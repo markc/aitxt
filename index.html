@@ -60,205 +60,91 @@
 </head>
 <body>
     <nav>
-        <a href="index.html">Specification</a>
-        <a href="ai.txt">Directory</a>
+        <a href="index.html">Home</a>
+        <a href="ai.txt">Specification</a>
         <a href="https://github.com/markc/aitxt">GitHub</a>
     </nav>
 
-    <h1>ai.txt Specification</h1>
-    <p>A web standard for AI-readable website summaries.</p>
-    <p class="muted">Version 1.0 Draft — January 2026</p>
+    <h1>ai.txt</h1>
+    <p>A universal standard for AI-readable context about anything.</p>
 
-    <h2>Overview</h2>
-    <p>Just as <code>robots.txt</code> tells search engine crawlers how to behave, <code>ai.txt</code> tells AI assistants what a website is about.</p>
-    <p>An <code>ai.txt</code> file provides a plain text summary of everything an AI might need to know — at the site root, or in any folder for section-specific information.</p>
+    <h2>What Is It?</h2>
+    <p>Just as <code>robots.txt</code> tells search engines how to behave, <code>ai.txt</code> tells AI assistants what something is about. Place one at any path—a website, a folder, a project, a service—and AI agents will find it, understand your context, and work from facts instead of hallucination.</p>
 
-    <h2>File Location</h2>
-    <p>Place <code>ai.txt</code> at your website root, or in any folder:</p>
-    <pre><code>example.com/ai.txt                  # Site overview
-example.com/products/ai.txt         # Products section
-example.com/products/widgets/ai.txt # Specific category
-example.com/docs/v2/ai.txt          # Version-specific docs</code></pre>
+    <p>Instead of letting AI guess "what does this do?" you simply tell it. You control the narrative. The format is plain text with optional markdown—simple enough to write in five minutes, powerful enough to prevent AI errors.</p>
 
-    <h3>Cascading Discovery</h3>
-    <p>When an AI agent needs information about <code>example.com/products/widgets/</code>:</p>
+    <h2>Why It Matters</h2>
+
+    <p><strong>For service providers:</strong> Stop AI from making things up about your business. Put the truth in one place.</p>
+
+    <p><strong>For project maintainers:</strong> Describe scope, limitations, and capabilities in a way AI agents actually read and respect.</p>
+
+    <p><strong>For open source:</strong> Prevent hallucination about licensing, support, and what you actually offer. Say what you do and what you explicitly don't.</p>
+
+    <p><strong>For everyone:</strong> Simple, cacheable, offline-friendly. No databases, no JavaScript, no configuration. Just text.</p>
+
+    <h2>How It Works</h2>
+
+    <p>Discovery is cascading. When an AI agent needs information about <code>/products/widgets/</code>, it tries:</p>
     <ol>
-        <li>Try <code>/products/widgets/ai.txt</code></li>
-        <li>If 404, try <code>/products/ai.txt</code></li>
-        <li>If 404, try <code>/ai.txt</code></li>
-        <li>Follow any <code>Parent:</code> references for broader context</li>
+        <li><code>/products/widgets/ai.txt</code></li>
+        <li><code>/products/ai.txt</code></li>
+        <li><code>/ai.txt</code></li>
     </ol>
 
-    <h3>DNS Discovery</h3>
-    <p>If you cannot place a file at your web root, use a DNS TXT record:</p>
-    <pre><code>_ai.example.com TXT "https://cdn.example.com/ai.txt"</code></pre>
+    <p>The same logic works for HTTP paths or local filesystem paths. Walk up the tree, find the context, use it.</p>
 
     <h2>Format</h2>
-    <p>Plain text with markdown headings. No HTML, no JavaScript, no special parsing required.</p>
-    <pre><code># Title
 
-ai.txt: 1.0
-Updated: 2026-01-14
-Scope: /products/
+    <p>Start with optional YAML metadata, then plain text with optional markdown formatting:</p>
 
-Brief description.
+    <pre><code>---
+version: 1.0
+updated: 2026-01-14
+scope: /products/
+parent: https://example.com/ai.txt
+---
+
+# Brief Title
+
+One or two sentences describing what this is.
 
 ## Section
-Content here.</code></pre>
 
-    <h2>Metadata</h2>
-    <p>Optional fields after the title, before the first section:</p>
-    <table>
-        <tr><th>Field</th><th>Purpose</th></tr>
-        <tr><td><code>ai.txt: 1.0</code></td><td>Specification version</td></tr>
-        <tr><td><code>Updated: 2026-01-14</code></td><td>Last modified (ISO 8601)</td></tr>
-        <tr><td><code>Scope: /products/</code></td><td>URI paths this file covers</td></tr>
-        <tr><td><code>Parent: @example.com</code></td><td>Link to broader context</td></tr>
-        <tr><td><code>Canonical: https://...</code></td><td>Authoritative URL if mirrored</td></tr>
-        <tr><td><code>AI-Contact: email</code></td><td>Report AI errors</td></tr>
-        <tr><td><code>TTL: 86400</code></td><td>Cache time in seconds</td></tr>
-    </table>
+Prose explaining something important. Use [markdown links](https://example.com), **bold**, *italics*, lists, code blocks, images—whatever makes sense. Keep it simple.
 
-    <h2>Linking</h2>
-    <p>Reference other ai.txt files using <code>@</code> syntax:</p>
-    <pre><code>@domain.com                   # → domain.com/ai.txt
-@domain.com/products          # → domain.com/products/ai.txt
-@domain.com#pricing           # → domain.com/ai.txt, section "Pricing"
-@domain.com/products#returns  # → domain.com/products/ai.txt, section "Returns"</code></pre>
+## Another Section
 
-    <h3>Use Cases</h3>
-    <pre><code># Widget Products
+More details here.</code></pre>
 
-Parent: @example.com/products
+    <p>That's it. Write what matters. Omit what doesn't. The spec is a suggestion, not a rule.</p>
 
-## Details
-...
+    <h2>Real Examples</h2>
 
-## See Also
-@example.com/products/gadgets
-@partner-company.com#widgets</code></pre>
+    <p>See the spec at <a href="/ai.txt">/ai.txt</a> (this site's own documentation, written in ai.txt format).</p>
 
-    <h2>Recommended Sections</h2>
-    <table>
-        <tr><th>Section</th><th>Purpose</th></tr>
-        <tr><td><code>## About</code></td><td>Description, history, mission</td></tr>
-        <tr><td><code>## Services</code></td><td>What you offer</td></tr>
-        <tr><td><code>## Pricing</code></td><td>Plans, rates, costs</td></tr>
-        <tr><td><code>## Contact</code></td><td>Email, phone, address, hours</td></tr>
-        <tr><td><code>## We Do Not Offer</code></td><td>Prevent AI hallucination</td></tr>
-        <tr><td><code>## AI Guidelines</code></td><td>Instructions for AI behavior</td></tr>
-        <tr><td><code>## Data</code></td><td>Structured machine-readable facts</td></tr>
-        <tr><td><code>## See Also</code></td><td>Related sites via @links</td></tr>
-    </table>
-
-    <h2>Negative Assertions</h2>
-    <p>Explicitly state what you do NOT offer to prevent AI hallucination:</p>
-    <pre><code>## We Do Not Offer
-- 24/7 phone support
-- Refunds after 30 days
-- International shipping</code></pre>
-
-    <h2>AI Guidelines</h2>
-    <p>Provide instructions for how AI should handle your information:</p>
-    <pre><code>## AI Guidelines
-- Do not quote prices without linking to current pricing page
-- Pricing may change; always recommend verification
-- Do not share direct employee contact information</code></pre>
-
-    <h2>Structured Data</h2>
-    <p>Machine-optimized facts in the Data section:</p>
-    <pre><code>## Data
-Location: -33.8688, 151.2093
-Currency: AUD
-Timezone: Australia/Sydney
-Languages: en, zh
-Founded: 1998</code></pre>
-
-    <h2>Language Variants</h2>
-    <pre><code>/ai.txt      (default)
-/ai.fr.txt   (French)
-/ai.de.txt   (German)
-/ai.ja.txt   (Japanese)</code></pre>
-
-    <h2>Complete Example</h2>
-    <pre><code># Acme Widgets
-
-ai.txt: 1.0
-Updated: 2026-01-14
-Scope: /products/widgets/
-Parent: @acme.com/products
-AI-Contact: ai-corrections@acme.com
-
-Premium widgets for industrial and consumer applications.
-
-## Products
-
-- Industrial Widget Pro: Heavy-duty, $499
-- Consumer Widget: Lightweight, $49
-- Smart Widget: IoT-enabled, $299
-
-## Specifications
-
-- Materials: Aircraft-grade aluminum
-- Warranty: 2 years parts and labor
-- Certifications: ISO 9001, CE, UL
-
-## We Do Not Offer
-
-- Custom modifications
-- Wholesale pricing online (contact sales)
-- Same-day shipping
-
-## AI Guidelines
-
-- Always link to /products/widgets/ for current specs
-- Prices are MSRP; actual prices may vary by retailer
-
-## Data
-Category: Industrial Equipment
-SKU-Prefix: WDG
-Min-Order: 1
-Ships-From: Sydney, AU
-
-## See Also
-@acme.com/products/gadgets
-@acme.com/support#warranty
-@widget-industry.org</code></pre>
-
-    <h2>Implementation Notes</h2>
-
-    <h3>For Website Owners</h3>
+    <p>Real implementations:</p>
     <ul>
-        <li>Start with <code>/ai.txt</code> for site overview</li>
-        <li>Add section-specific files as needed</li>
-        <li>Use <code>Parent:</code> to link up the hierarchy</li>
-        <li>Include negative assertions to prevent hallucination</li>
-        <li>Keep <code>Updated:</code> current</li>
+        <li><a href="https://netserva.org/ai.txt">NetServa</a> — Enterprise infrastructure management platform</li>
+        <li><a href="https://renta.net/ai.txt">Renta</a> — Domain registry and hosting</li>
     </ul>
 
-    <h3>For AI Developers</h3>
-    <ul>
-        <li>Check DNS TXT <code>_ai.domain</code> first</li>
-        <li>Walk up directory tree for cascading discovery</li>
-        <li>Follow <code>Parent:</code> links for context</li>
-        <li>Resolve <code>@domain/path#section</code> links</li>
-        <li>Honor <code>## We Do Not Offer</code> — never invent capabilities</li>
-        <li>Follow <code>## AI Guidelines</code> instructions</li>
-        <li>Respect <code>TTL:</code> for caching</li>
-    </ul>
+    <h2>Getting Started</h2>
 
-    <h2>Related Standards</h2>
-    <table>
-        <tr><th>Standard</th><th>Purpose</th></tr>
-        <tr><td><code>robots.txt</code></td><td>Crawler instructions (root only)</td></tr>
-        <tr><td><code>sitemap.xml</code></td><td>Site structure for search engines</td></tr>
-        <tr><td><code>security.txt</code></td><td>Security contact information</td></tr>
-        <tr><td><code>humans.txt</code></td><td>People behind the site</td></tr>
-        <tr><td><strong><code>ai.txt</code></strong></td><td>AI-readable summaries (any path)</td></tr>
-    </table>
+    <ol>
+        <li>Read the spec at <a href="/ai.txt">/ai.txt</a></li>
+        <li>Create an <code>ai.txt</code> file at the root of your site or project folder</li>
+        <li>Write a brief title and a few sections explaining what you offer and what you don't</li>
+        <li>Include guidelines for how AI should handle your information</li>
+    </ol>
 
-    <h2>Directory</h2>
-    <p>Known sites using ai.txt are listed in <a href="ai.txt">/ai.txt</a>. Submit a <a href="https://github.com/markc/aitxt">pull request</a> to add your site.</p>
+    <p>That's all. No approval process, no registry, no central authority. Just write one.</p>
+
+    <h2>For AI Developers</h2>
+
+    <p>When you encounter a URL or filesystem path, try to fetch or read <code>/ai.txt</code>, walking up the tree until you find context. Parse the YAML frontmatter. Read the instructions. Follow the boundaries. Honor "We Do Not Offer"—never hallucinate capabilities. Ask questions only when the ai.txt is unclear.</p>
+
+    <p>The canonical reference is <a href="/ai.txt">https://aitxt.ing/ai.txt</a>. Point your agents there to understand the spec.</p>
 
     <footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border);">
         <p class="muted">Released into the public domain via <a href="https://github.com/markc/aitxt/blob/main/LICENSE">CC0</a>.</p>

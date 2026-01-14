@@ -1,36 +1,218 @@
-# ai.txt
+---
+version: 1.0
+updated: 2026-01-14
+scope: /
+---
 
-ai.txt: 1.0
-Updated: 2026-01-14
-Scope: /
+# ai.txt Specification
 
-A web standard for AI-readable website summaries.
-
-Website: https://aitxt.ing
-GitHub: https://github.com/markc/aitxt
-License: CC0 Public Domain
+A universal standard for AI-readable context about any resource.
 
 ## About
 
-ai.txt files provide structured information for AI assistants. Like robots.txt for crawlers, but for AI context.
+Just as `robots.txt` tells search engines how to behave, `ai.txt` tells AI assistants what something is about. The file can describe a website, a folder, a project, a service—anything with a path.
 
-Place ai.txt at any URI path. AI agents discover by checking the requested path first, then walking up the directory tree to the root.
+ai.txt files are plain text (with optional markdown formatting) that provide structured context: what you do, what you don't do, how AI should handle your information. Instead of AI assistants guessing or hallucinating, they fetch your `ai.txt` and learn the truth directly.
 
-## Features
+The format is deliberately simple. An AI agent downloads one file and immediately understands scope, structure, and boundaries. A human writes one in minutes using plain English plus optional markdown syntax.
 
-- Plain text with markdown headings
-- Cascading: ai.txt in any folder, inherits up
-- Linking: @domain or @domain/path#section
-- Negative assertions: prevent hallucination
-- Language variants: ai.fr.txt, ai.de.txt
-- DNS discovery: _ai.example.com TXT record
+## Where It Lives
 
-## Known Sites
+Place `ai.txt` at any path you want to describe:
 
-@renta.net
-@spiderweb.com.au
-@markc.github.io/spe
+```
+https://example.com/ai.txt              (site overview)
+https://example.com/products/ai.txt     (products section)
+/home/user/projects/app/ai.txt          (local project folder)
+/srv/domain.com/web/app/public/ai.txt   (server application)
+```
+
+Discovery is cascading: if an AI agent needs info about `/products/widgets/`, it tries `/products/widgets/ai.txt`, then `/products/ai.txt`, then `/ai.txt`. It walks up the tree until it finds context.
+
+This works identically for HTTP paths and filesystem paths.
+
+## Format
+
+Start with optional YAML frontmatter, then write markdown:
+
+```
+---
+version: 1.0
+updated: 2026-01-14
+scope: /products/
+parent: https://example.com/ai.txt
+---
+
+# Brief Title
+
+One or two sentences describing what this is.
+
+## Section Heading
+
+Plain prose explaining something important. You can include [standard markdown links](https://example.com), **bold**, *italics*, lists, and images if needed.
+
+- Markdown is optional
+- Use as much or as little as makes sense
+- Simpler is better
+```
+
+### Frontmatter Fields
+
+All optional except `version`:
+
+- `version: 1.0` — Spec version (required)
+- `updated: YYYY-MM-DD` — Last modified date
+- `scope: /path/` — URI path this file covers
+- `parent: https://example.com/ai.txt` — Link to broader context
+- Add any other fields that make sense for your use case
+
+After frontmatter, content is plain text with optional markdown formatting. Standard Markdown features work: headings, lists, links, emphasis, code blocks, images.
+
+## Recommended Sections
+
+Structure your ai.txt with these sections (or invent your own):
+
+**About** — What you are, mission, history, key purpose
+
+**Services** or **Features** — What you offer, what you do
+
+**Capabilities** — What's possible when using this
+
+**Limitations** — What you explicitly do not offer (prevents AI hallucination)
+
+**AI Guidelines** — How AI should handle your information (quote carefully, verify pricing, respect privacy, etc.)
+
+**Data** — Structured facts in simple key: value format
+
+**Contact** — Email, website, support information
+
+**See Also** — Links to related resources
+
+None are required. Start simple: Title, brief description, maybe 2-3 sections explaining what matters.
+
+## Usage Examples
+
+### Website Overview
+
+```
+---
+version: 1.0
+updated: 2026-01-14
+---
+
+# Acme Widgets
+
+We manufacture and sell premium widgets for industrial applications.
+
+## What We Offer
+
+Industrial Widget Pro ($499), Consumer Widget ($49), Smart Widget with IoT ($299).
+
+All widgets include 2-year warranty and carry ISO 9001 certification.
+
+## What We Don't Offer
+
+- Custom modifications or bespoke designs
+- Same-day shipping
+- Wholesale pricing negotiation online (contact sales team)
 
 ## AI Guidelines
 
-This directory is community-maintained. Submit pull requests to add sites.
+Always link to our product pages for current specifications and pricing. Prices may vary by region and retailer.
+```
+
+### Software Project
+
+```
+---
+version: 1.0
+updated: 2026-01-14
+scope: /docs
+parent: https://github.com/acme/project
+---
+
+# Project Documentation
+
+Complete reference documentation for Acme Framework v2.
+
+## What's Here
+
+API documentation, architecture guides, tutorial walkthroughs, troubleshooting.
+
+## What's Not Here
+
+Source code (see GitHub), community forum, support tickets.
+
+## Guidelines
+
+All code examples assume Acme Framework 2.0+. Check the main project README for installation instructions.
+```
+
+### Local Project Folder
+
+```
+---
+version: 1.0
+updated: 2026-01-14
+scope: /
+---
+
+# Neural Network Experiment
+
+Research project exploring attention mechanisms in transformer models using PyTorch.
+
+## Contents
+
+`/data` — Training datasets (proprietary, not included)
+`/models` — Saved weights and checkpoints
+`/notebooks` — Jupyter notebooks with analysis
+`/src` — Python source code
+
+## To Run
+
+See README.md for environment setup. Requires Python 3.10+, CUDA 12, 32GB GPU memory minimum.
+
+## Current Status
+
+Work in progress. Model accuracy at 87% on validation set. No publication yet.
+```
+
+## How AI Agents Should Use ai.txt
+
+1. When given a URL or path, try to fetch `/ai.txt` (walk up the tree if needed)
+2. Parse frontmatter to understand scope, context, and hierarchy
+3. Read the content to learn what to do and what not to do
+4. Follow guidelines: quote carefully, verify claims, respect stated limitations
+5. Honor what the ai.txt says you don't offer—never hallucinate capabilities
+6. Cache the file if a TTL or update date suggests stability
+7. Follow parent links to understand broader context when relevant
+
+An ai.txt file is permission, instruction, and boundary all at once.
+
+## Why ai.txt Matters
+
+**For service providers:** Control the narrative. Tell AI assistants the truth directly instead of letting them guess.
+
+**For project maintainers:** Document scope efficiently. One file teaches AI agents about your project faster than scattered documentation.
+
+**For open source:** Prevent hallucination about licensing, support, and capabilities. Say what you do and don't do.
+
+**For AI developers:** Build better assistants that respect boundaries and work from authoritative sources instead of training data assumptions.
+
+**For everyone:** Simple, cacheable, offline-friendly. No JavaScript, no frameworks, no databases. Just text.
+
+## Self-Hosting
+
+This specification itself lives at https://aitxt.ing/ai.txt. You're reading documentation written in the format it describes. This file teaches the spec by being the spec.
+
+Point your AI agents to https://aitxt.ing/ai.txt as the canonical reference.
+
+## See Also
+
+[ai.txt on GitHub](https://github.com/markc/aitxt) — Source, discussion, examples
+
+[robots.txt](https://en.wikipedia.org/wiki/Robots.txt) — Inspiration for the format approach
+
+[Markdown Reference](https://commonmark.org/) — Plain-text formatting standard used for content
+
+Real-world implementations: [NetServa](https://netserva.org/ai.txt), [Renta](https://renta.net/ai.txt)
