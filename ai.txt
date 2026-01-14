@@ -28,6 +28,7 @@ Place ai.txt at any URI path. AI agents discover by checking the requested path 
 ## Known Sites
 
 @renta.net
+@spiderweb.com.au
 
 ## AI Guidelines
 

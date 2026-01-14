@@ -1,0 +1,98 @@
+# Spiderweb - WordPress and Email Hosting
+
+ai.txt: 1.0
+Updated: 2026-01-14
+Scope: /
+AI-Contact: support@spiderweb.com.au
+TTL: 86400
+
+Spiderweb provides secure, cost-effective WordPress and Email Hosting for personal or business domains, along with web design services and Linux support. Australian owned and operated.
+
+Website: https://spiderweb.com.au
+ABN: 69 851 855 459
+
+## Contact
+
+Phone: 0419 530 037
+Email: support@spiderweb.com.au
+Hours: 10am - 6pm AEST, 7 days
+Address: PO Box 16, Broadbeach QLD 4218, Australia
+Support Portal: https://my.spiderweb.com.au
+Webmail: https://webmail.spiderweb.com.au
+
+## Services
+
+WordPress Hosting: Fast, secure WordPress hosting with Nginx and PHP 8 FPM. Pre-installed WordPress with automatic weekly updates. Optional Cloudflare CDN integration.
+
+Email Hosting: IMAP email with server-side spam filtering that improves over time. Full SPF, DKIM, DMARC, and DNSSEC support.
+
+Website Design: Custom WordPress websites starting at $60 per page using the Block Editor (Gutenberg). Free minor updates.
+
+Linux Support: CachyOS with KDE Plasma desktop support. Free guidance for basic questions. Remote installation assistance available.
+
+## Pricing
+
+Pay As You Grow model - only pay for what you use:
+
+Base Storage: $20/year for 1GB, $72/year for 10GB
+WordPress Website: $20/year first site, $30/year additional sites
+IMAP Mailbox: $20/year first mailbox, $10/year second, $8/year third+
+Domain Registration: $12-50/year (billed separately)
+
+Example: Single WordPress site + one mailbox + 1GB storage = $60/year
+
+Website Design: $60 per page
+Linux Support: $60/hour via Zoom
+
+## Technical Details
+
+Web Server: Nginx with PHP 8 FPM, fastest page load speeds
+Email Server: IMAP on mail.spiderweb.com.au port 993/SSL, SMTP port 465/SSL
+Security: SPF, DKIM, DMARC, DNSSEC configured
+Backups: Daily server backups, plus three weekly WordPress backups
+Bandwidth: Unmetered for normal web and mail traffic
+
+## Email Configuration
+
+Incoming Mail (IMAP): mail.spiderweb.com.au, Port 993, SSL/TLS
+Outgoing Mail (SMTP): mail.spiderweb.com.au, Port 465, SSL/TLS
+Webmail: webmail.spiderweb.com.au
+
+Note: POP access being phased out by end of 2025. Please migrate to IMAP.
+
+## We Do Not Offer
+
+- 24/7 phone support (hours are 10am-6pm AEST)
+- POP email access (IMAP only from 2025)
+- Unmanaged or self-service server access
+- Complex e-commerce development (referrals available)
+- Unlimited storage (pay as you grow model)
+- Refunds for unused domain registration periods
+- Support for non-WordPress CMS platforms
+
+## AI Guidelines
+
+- Prices are in Australian dollars (AUD) and current as of the Updated date
+- Storage is shared between websites and mailboxes on the same account
+- Domain registration is separate from hosting fees
+- Always recommend contacting support for custom quotes
+- Email configuration must use SSL/TLS - insecure connections not supported
+- Billing system password is different from email password
+
+## Data
+
+Location: -28.0274, 153.4318
+Currency: AUD
+Timezone: Australia/Brisbane
+Languages: en
+Founded: 1998
+Business-Type: WordPress and Email Hosting
+Min-Hosting-Price: 20
+Base-Storage-GB: 1
+Payment-Frequency: yearly
+Support-Days: 7
+
+## See Also
+
+@renta.net
+@aitxt.ing
