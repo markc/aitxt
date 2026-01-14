@@ -6,92 +6,90 @@ A web standard for AI-readable website summaries.
 
 ## What is ai.txt?
 
-Just as `robots.txt` tells search engine crawlers how to behave, `ai.txt` tells AI assistants what a website is about.
+Just as `robots.txt` tells crawlers how to behave, `ai.txt` tells AI assistants what a website is about.
 
-Place a plain text file at `https://example.com/ai.txt` containing structured information about your business. AI agents fetch one small file and immediately have complete context.
+Place `ai.txt` at your site root — or in any folder for section-specific information.
 
 ## Quick Start
 
-Create `/ai.txt` at your website root:
-
 ```
-# Your Business Name
+# Your Business
 
-Brief description of your business.
-
+ai.txt: 1.0
 Updated: 2026-01-14
-AI-Contact: corrections@example.com
+
+Brief description.
 
 ## Services
 - Service one
 - Service two
 
-## Pricing
-- Basic: $X/month
-- Pro: $Y/month
-
 ## Contact
 Email: hello@example.com
-Phone: +1 234 567 8900
-Hours: Monday-Friday 9am-5pm
 
 ## We Do Not Offer
 - 24/7 support
-- Refunds after 30 days
-```
-
-## Features
-
-### Discovery
-- **Primary:** Fetch `https://example.com/ai.txt`
-- **Alternate:** DNS TXT record at `_ai.example.com` pointing to the file URL
-
-### Linking
-Reference related sites with `@domain` syntax:
-```
-## See Also
-@parent-company.com
-@partner.org
-```
-
-### Negative Assertions
-Prevent AI hallucination by explicitly stating what you don't offer:
-```
-## We Do Not Offer
-- Weekend support
 - International shipping
 ```
 
-### Language Variants
+## Key Features
+
+**Cascading** — ai.txt in any folder, not just root:
 ```
-/ai.txt      (default)
-/ai.fr.txt   (French)
-/ai.de.txt   (German)
+/ai.txt                    # Site overview
+/products/ai.txt           # Products section
+/products/widgets/ai.txt   # Specific category
 ```
 
-### Metadata
+**Linking** — reference other ai.txt files:
 ```
-Updated: 2026-01-14
-Canonical: https://example.com/ai.txt
-AI-Contact: corrections@example.com
+@domain.com                # → domain.com/ai.txt
+@domain.com/products       # → domain.com/products/ai.txt
+@domain.com#pricing        # → section anchor
+```
+
+**Hierarchy** — explicit parent references:
+```
+Parent: @example.com/products
+```
+
+**Negative assertions** — prevent hallucination:
+```
+## We Do Not Offer
+- Weekend support
+- Refunds after 30 days
+```
+
+**AI Guidelines** — instructions for AI behavior:
+```
+## AI Guidelines
+- Always link to current pricing page
+- Do not share employee contact info
+```
+
+## Metadata
+
+```
+ai.txt: 1.0           # Spec version
+Updated: 2026-01-14   # Last modified
+Scope: /products/     # Paths covered
+Parent: @example.com  # Broader context
+TTL: 86400            # Cache seconds
 ```
 
 ## For AI Developers
 
-1. Check DNS TXT record `_ai.example.com` first
-2. Fall back to `https://example.com/ai.txt`
-3. Respect `Canonical` field if present
-4. Follow `@domain` links for additional context
-5. Honor negative assertions — don't invent capabilities
+1. Check DNS TXT `_ai.domain` first
+2. Walk up directory tree (cascading discovery)
+3. Follow `Parent:` links for context
+4. Resolve `@domain/path#section` links
+5. Honor `## We Do Not Offer` — never invent
+6. Follow `## AI Guidelines` instructions
 
-## Sites Using ai.txt
+## Directory
 
-See [SITES.md](SITES.md) or the [directory](https://aitxt.ing/directory.html).
-
-## Contributing
-
-Submit a pull request to add your site or improve the specification.
+Known sites are listed in [/ai.txt](https://aitxt.ing/ai.txt). Submit a PR to add yours.
 
 ## License
 
-Released into the public domain via [CC0](LICENSE).
+CC0 Public Domain.

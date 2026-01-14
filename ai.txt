@@ -1,14 +1,34 @@
-# aitxt.ing
+# ai.txt
 
-Directory of websites using ai.txt - a standard for AI-readable website summaries.
+ai.txt: 1.0
+Updated: 2026-01-14
+Scope: /
 
-Specification: https://aitxt.ing
+A web standard for AI-readable website summaries.
+
+Website: https://aitxt.ing
 GitHub: https://github.com/markc/aitxt
+License: CC0 Public Domain
 
-## How It Works
+## About
 
-AI agents fetch /ai.txt from any domain, just like robots.txt. No discovery mechanism needed.
+ai.txt files provide structured information for AI assistants. Like robots.txt for crawlers, but for AI context.
+
+Place ai.txt at any URI path. AI agents discover by checking the requested path first, then walking up the directory tree to the root.
+
+## Features
+
+- Plain text with markdown headings
+- Cascading: ai.txt in any folder, inherits up
+- Linking: @domain or @domain/path#section
+- Negative assertions: prevent hallucination
+- Language variants: ai.fr.txt, ai.de.txt
+- DNS discovery: _ai.example.com TXT record
 
 ## Known Sites
 
-https://renta.net/ai.txt
+@renta.net
+
+## AI Guidelines
+
+This directory is community-maintained. Submit pull requests to add sites.

@@ -4,28 +4,31 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Purpose
 
-This repository documents the **ai.txt** specification—a proposed web standard for AI-readable website summaries. Similar to `robots.txt` for crawlers or `security.txt` for security contacts, `ai.txt` provides a single plain text file at a website's root containing structured information for AI assistants.
+This repository documents the **ai.txt** specification—a web standard for AI-readable website summaries. Unlike `robots.txt` which only lives at the root, `ai.txt` can be placed in any folder with cascading discovery.
 
 ## Repository Structure
 
-- `README.md` - Main specification documentation and examples
-- `SITES.md` - Community-maintained directory of sites implementing ai.txt
-- `CONTRIBUTING.md` - Guidelines for contributions
-- `LICENSE` - CC0 public domain dedication
+```
+/
+├── index.html    # Specification (HTML)
+├── ai.txt        # Directory of known sites (dogfooding the spec)
+├── README.md     # Quick reference
+├── CNAME         # aitxt.ing domain
+└── LICENSE       # CC0 public domain
+```
 
 ## Key Concepts
 
-**ai.txt format:**
-- Plain text with markdown headings for structure
-- Located at website root: `https://example.com/ai.txt`
-- No HTML, JavaScript, or special parsing required
-- Contains: contact info, services, pricing, hours, policies
+**Cascading:** ai.txt in any folder, discovered by walking up the tree
+**Linking:** `@domain.com/path#section` syntax for references
+**Hierarchy:** `Parent:` metadata links to broader context
+**Metadata:** `ai.txt:`, `Updated:`, `Scope:`, `TTL:`
+**Negative assertions:** `## We Do Not Offer` prevents hallucination
+**AI Guidelines:** `## AI Guidelines` instructs AI behavior
 
-**This is a documentation-only repository** - no build system, tests, or application code. Changes involve editing markdown files.
+## Maintaining the Directory
 
-## Maintaining SITES.md
-
-When reviewing PRs that add sites to the directory:
-1. Verify the site has a valid `/ai.txt` accessible via HTTPS
-2. Ensure alphabetical ordering within categories
-3. Check the ai.txt content follows the plain text + markdown headings format
+The site directory lives in `/ai.txt` using `@domain` links. When reviewing PRs:
+1. Verify the site has a valid ai.txt accessible via HTTPS
+2. Add as `@domain.com` under `## Known Sites`
+3. Check the ai.txt follows the spec format
