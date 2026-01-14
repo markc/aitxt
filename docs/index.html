@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ai.txt - AI-Readable Website Summaries</title>
+    <style>
+        :root {
+            --bg: #fff;
+            --text: #222;
+            --muted: #666;
+            --border: #ddd;
+            --code-bg: #f5f5f5;
+            --link: #0066cc;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a1a;
+                --text: #e0e0e0;
+                --muted: #999;
+                --border: #333;
+                --code-bg: #2a2a2a;
+                --link: #6db3f2;
+            }
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background: var(--bg);
+            color: var(--text);
+        }
+        h1 { margin-top: 0; }
+        h2 { margin-top: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        a { color: var(--link); }
+        code {
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        pre code { padding: 0; background: none; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+        th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); }
+        .muted { color: var(--muted); }
+        nav { margin-bottom: 2rem; }
+        nav a { margin-right: 1rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="directory.html">Directory</a>
+        <a href="https://github.com/markc/aitxt">GitHub</a>
+    </nav>
+
+    <h1>ai.txt</h1>
+    <p>A proposed web standard for AI-readable website summaries.</p>
+
+    <h2>The Problem</h2>
+    <p>When someone asks an AI assistant about a business, the AI typically has to:</p>
+    <ul>
+        <li>Crawl multiple web pages</li>
+        <li>Parse complex HTML</li>
+        <li>Navigate cookie consent popups</li>
+        <li>Piece together information from navigation menus, footers, and scattered content</li>
+    </ul>
+    <p>This is slow, error-prone, and often misses important details buried in subpages—or worse, inside images.</p>
+
+    <h2>The Solution</h2>
+    <p>An <code>ai.txt</code> file provides a single, plain text summary of everything an AI might need to know:</p>
+    <pre><code>https://example.com/ai.txt</code></pre>
+    <p>One small file. Complete context. Immediate understanding.</p>
+
+    <h2>Format</h2>
+    <p>Plain text with markdown headings. No HTML parsing, no JavaScript rendering, no special tools required.</p>
+    <pre><code># Business Name
+
+## About
+Brief description of the business.
+
+## Services
+- Service one
+- Service two
+
+## Pricing
+- Basic: $X/month
+- Pro: $Y/month
+
+## Contact
+- Email: hello@example.com
+- Phone: +1 234 567 8900
+
+## Hours
+Monday-Friday: 9am-5pm</code></pre>
+
+    <h2>Benefits</h2>
+    <p><strong>For visitors:</strong> Accurate information through AI assistants instead of hallucinated or outdated details.</p>
+    <p><strong>For businesses:</strong> Control your AI-facing narrative. As AI assistants become a primary discovery channel, a clear <code>ai.txt</code> becomes as important as a clear website.</p>
+
+    <h2>Get Started</h2>
+    <ol>
+        <li>Create a plain text file named <code>ai.txt</code></li>
+        <li>Add your business information using markdown headings</li>
+        <li>Place it at your website root: <code>https://yourdomain.com/ai.txt</code></li>
+        <li><a href="https://github.com/markc/aitxt">Add your site to the directory</a></li>
+    </ol>
+
+    <h2>Browse Examples</h2>
+    <p>See real-world implementations in the <a href="directory.html">ai.txt Directory</a>.</p>
+
+    <h2>Related Standards</h2>
+    <table>
+        <tr><th>Standard</th><th>Purpose</th></tr>
+        <tr><td><code>robots.txt</code></td><td>Instructions for search engine crawlers</td></tr>
+        <tr><td><code>sitemap.xml</code></td><td>Site structure for search engines</td></tr>
+        <tr><td><code>security.txt</code></td><td>Security contact information</td></tr>
+        <tr><td><code>humans.txt</code></td><td>Information about the people behind the site</td></tr>
+        <tr><td><strong><code>ai.txt</code></strong></td><td>Structured information for AI assistants</td></tr>
+    </table>
+
+    <h2>Specification</h2>
+    <p>See the full <a href="https://github.com/markc/aitxt">specification and examples on GitHub</a>.</p>
+
+    <footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+        <p class="muted">Released into the public domain via <a href="https://github.com/markc/aitxt/blob/main/LICENSE">CC0</a>.</p>
+    </footer>
+</body>
+</html>

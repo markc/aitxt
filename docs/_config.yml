@@ -1,5 +1,0 @@
-title: ai.txt
-description: A proposed web standard for AI-readable website summaries
-remote_theme: pages-themes/minimal@v0.2.0
-plugins:
-  - jekyll-remote-theme

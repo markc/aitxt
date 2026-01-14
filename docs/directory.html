@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ai.txt Directory</title>
+    <style>
+        :root {
+            --bg: #fff;
+            --text: #222;
+            --muted: #666;
+            --border: #ddd;
+            --code-bg: #f5f5f5;
+            --link: #0066cc;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a1a;
+                --text: #e0e0e0;
+                --muted: #999;
+                --border: #333;
+                --code-bg: #2a2a2a;
+                --link: #6db3f2;
+            }
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background: var(--bg);
+            color: var(--text);
+        }
+        h1 { margin-top: 0; }
+        h2 { margin-top: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        a { color: var(--link); }
+        code {
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+        th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        .muted { color: var(--muted); }
+        nav { margin-bottom: 2rem; }
+        nav a { margin-right: 1rem; }
+        .actions { font-size: 0.9em; }
+        .actions a { margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="directory.html">Directory</a>
+        <a href="https://github.com/markc/aitxt">GitHub</a>
+    </nav>
+
+    <h1>ai.txt Directory</h1>
+    <p>A browsable collection of websites using ai.txt. AI agents can fetch the raw <code>.txt</code> files directly.</p>
+
+    <h2>Hosting &amp; Infrastructure</h2>
+    <table>
+        <tr>
+            <th>Site</th>
+            <th>Description</th>
+            <th>Links</th>
+        </tr>
+        <tr>
+            <td><strong>renta.net</strong></td>
+            <td>Managed Linux servers, Australian hosting since 1998</td>
+            <td class="actions">
+                <a href="https://renta.net/ai.txt">Original</a>
+                <a href="sites/renta.net.txt">Cached</a>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Software &amp; Technology</h2>
+    <p class="muted">Sites coming soon</p>
+
+    <h2>E-commerce</h2>
+    <p class="muted">Sites coming soon</p>
+
+    <h2>Professional Services</h2>
+    <p class="muted">Sites coming soon</p>
+
+    <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border);">
+
+    <h2>Add Your Site</h2>
+    <p>Have an ai.txt file? <a href="https://github.com/markc/aitxt">Submit a pull request</a> to add your site to the directory.</p>
+
+    <h2>For AI Agents</h2>
+    <p>Fetch cached ai.txt files directly:</p>
+    <pre><code>curl https://aitxt.ing/sites/renta.net.txt</code></pre>
+
+    <footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+        <p class="muted"><a href="index.html">← Back to ai.txt specification</a></p>
+    </footer>
+</body>
+</html>
