@@ -83,6 +83,16 @@
 
     <p><strong>For everyone:</strong> Simple, cacheable, offline-friendly. No databases, no JavaScript, no configuration. Just text.</p>
 
+    <h2>Design Principles</h2>
+
+    <p><strong>Low barrier to entry.</strong> A small business owner, a blogger, or a researcher should be able to write an ai.txt file in minutes without learning schemas or strict metadata standards. Plain prose is the primary format. Everything else is optional.</p>
+
+    <p><strong>Designed for humans first, AI second.</strong> The file should make sense when you read it. It's not a machine-only format. That simplicity is what makes it powerful for both.</p>
+
+    <p><strong>Extensibility without pollution.</strong> If someone needs strict metadata for database imports or specialized use cases, they can layer that on top through separate profiles or domain-specific extensions. The base standard stays simple and doesn't force complexity on everyone.</p>
+
+    <p><strong>No versioning required.</strong> Unlike other standards that require version declarations, ai.txt trusts simplicity. The spec is stable at the core, and edge cases are handled by tools and extensions, not by version number declarations in every file.</p>
+
     <h2>How It Works</h2>
 
     <p>Discovery is cascading. When an AI agent needs information about <code>/products/widgets/</code>, it tries:</p>
@@ -96,10 +106,9 @@
 
     <h2>Format</h2>
 
-    <p>Start with optional YAML metadata, then plain text with optional markdown formatting:</p>
+    <p>Start with optional YAML metadata (or skip it entirely), then plain text with optional markdown formatting:</p>
 
     <pre><code>---
-version: 1.0
 updated: 2026-01-14
 scope: /products/
 parent: https://example.com/ai.txt

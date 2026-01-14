@@ -1,5 +1,4 @@
 ---
-version: 1.0
 updated: 2026-01-14
 scope: /
 ---
@@ -33,11 +32,10 @@ This works identically for HTTP paths and filesystem paths.
 
 ## Format
 
-Start with optional YAML frontmatter, then write markdown:
+Start with optional YAML frontmatter (or none at all), then write markdown:
 
 ```
 ---
-version: 1.0
 updated: 2026-01-14
 scope: /products/
 parent: https://example.com/ai.txt
@@ -58,13 +56,12 @@ Plain prose explaining something important. You can include [standard markdown l
 
 ### Frontmatter Fields
 
-All optional except `version`:
+All optional. Add whatever makes sense for your use case:
 
-- `version: 1.0` — Spec version (required)
 - `updated: YYYY-MM-DD` — Last modified date
 - `scope: /path/` — URI path this file covers
 - `parent: https://example.com/ai.txt` — Link to broader context
-- Add any other fields that make sense for your use case
+- Custom fields — Your own metadata as needed
 
 After frontmatter, content is plain text with optional markdown formatting. Standard Markdown features work: headings, lists, links, emphasis, code blocks, images.
 
@@ -96,7 +93,6 @@ None are required. Start simple: Title, brief description, maybe 2-3 sections ex
 
 ```
 ---
-version: 1.0
 updated: 2026-01-14
 ---
 
@@ -125,7 +121,6 @@ Always link to our product pages for current specifications and pricing. Prices 
 
 ```
 ---
-version: 1.0
 updated: 2026-01-14
 scope: /docs
 parent: https://github.com/acme/project
@@ -152,7 +147,6 @@ All code examples assume Acme Framework 2.0+. Check the main project README for 
 
 ```
 ---
-version: 1.0
 updated: 2026-01-14
 scope: /
 ---
