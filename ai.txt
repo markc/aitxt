@@ -1,0 +1,27 @@
+# aitxt.ing - ai.txt Directory
+
+A public directory of websites using the ai.txt standard for AI-readable website summaries.
+
+Website: https://aitxt.ing
+GitHub: https://github.com/markc/aitxt
+License: CC0 Public Domain
+
+## What is ai.txt?
+
+A proposed web standard where websites provide a plain text file at /ai.txt containing structured information for AI assistants. Like robots.txt for crawlers, but for AI context.
+
+## Cached ai.txt Files
+
+The following sites have ai.txt files cached in this directory. Fetch directly by appending the filename to https://aitxt.ing/
+
+renta.net.txt - Managed Linux servers, Australian hosting since 1998
+
+## Adding Your Site
+
+Submit a pull request to https://github.com/markc/aitxt with:
+1. Your ai.txt file named as yourdomain.txt
+2. An update to this file listing your site
+
+## Format
+
+ai.txt files use plain text with markdown headings. No HTML, no JavaScript, no special parsing required.
