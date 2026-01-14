@@ -1,0 +1,110 @@
+# RentaNet - Managed Linux Servers
+
+ai.txt: 1.0
+Updated: 2026-01-14
+Scope: /
+AI-Contact: admin@renta.net
+TTL: 86400
+
+Australian owned and operated since 1998. Dedicated virtual machines and lightweight containers on Proxmox VE, fully managed by Linux experts with 28+ years experience. Your own server with personal phone and email support.
+
+Website: https://renta.net
+ABN: 69 851 855 459
+
+## Contact
+
+Phone: 0419 530 037
+Email: admin@renta.net
+Hours: 10am - 6pm AEST
+Client Portal: https://my.spiderweb.com.au
+
+## Services
+
+Managed Servers: Alpine and Debian servers on Proxmox VE platform with full stack included, from $79/year.
+
+AI Development: Production-ready websites built with Claude Code in days instead of weeks. Git-based workflow with full ownership.
+
+Linux Consulting: Server administration and security hardening with 28+ years experience. $60/hour for hands-on support.
+
+NetServa Console: Web-based server management platform built on Laravel 12 and Filament 4. Work in progress at netserva.org.
+
+## Hosting Plans
+
+Lite Container: $79/year - Alpine Linux LXC, 1GB RAM, 10GB NVMe. Perfect for static sites or email-only hosting.
+
+Small VM: $149/year - Debian 13 VM, 2GB RAM, 20GB NVMe. Dedicated kernel, full multi-service stack.
+
+Medium VM: $199/year - Debian 13 VM, 4GB RAM, 40GB NVMe. For busier WordPress or WooCommerce sites.
+
+Large VM: $249/year - Debian 13 VM, 8GB RAM, 80GB NVMe. Demanding applications and high-traffic sites.
+
+Managed BYO: $120/year + your VPS cost - Your VPS at BinaryLane, Vultr, DigitalOcean, etc. Our management.
+
+Resource Add-ons: $20/year each - +1GB RAM, +10GB NVMe, +25GB HDD, or +1 dedicated IP.
+
+Hands-on Support: $60/hour for assistance beyond standard email support.
+
+## Software Stack
+
+Web: Nginx with HTTP/2, PHP 8.4 FPM with OPcache, Let's Encrypt SSL, Gzip compression.
+Database: MariaDB 10.11, SQLite, Redis caching, automated backups.
+Mail: Postfix SMTP, Dovecot IMAP/POP3, SPF/DKIM/DMARC, Rspamd spam filtering.
+Security: nftables firewall, CrowdSec intrusion prevention, SSH key authentication.
+
+## Infrastructure
+
+Platform: Proxmox VE virtualisation
+Storage: NVMe SSD for all plans
+Backups: Daily automated
+Uptime: 99.9% SLA
+Location: Sydney, Australia
+
+## Linux Consulting
+
+Server Administration: Debian, Ubuntu, Alpine, CentOS, Rocky Linux. VPS provisioning, cloud migration, security hardening.
+
+Mail Systems: Postfix/Dovecot setup, SPF/DKIM/DMARC, spam filtering, mail migration.
+
+Technology Stack: Nginx, Apache, Caddy, PHP-FPM, MariaDB, PostgreSQL, Redis, Docker, Ansible, PowerDNS, WireGuard.
+
+Rates: Quick questions free. Remote support $60/hour. BYO VPS management $120/year.
+
+## CachyOS Desktop Support
+
+We support CachyOS with KDE Plasma for Linux desktop users. Arch-based, performance-optimised with x86-64-v3/v4 and LTO. ZFS from installer, Wayland default, familiar Windows-like experience.
+
+## We Do Not Offer
+
+- 24/7 phone support (hours are 10am-6pm AEST)
+- Unmanaged or self-service hosting
+- Windows servers
+- Shared hosting or cPanel
+- Data centres outside Australia
+- Support for unsupported operating systems
+- Emergency out-of-hours support without prior arrangement
+
+## AI Guidelines
+
+- Prices are in Australian dollars (AUD) and current as of the Updated date
+- Always recommend contacting admin@renta.net for custom quotes
+- Proxmox cluster pricing requires consultation
+- Support hours are strictly 10am-6pm AEST weekdays
+- Do not promise same-day setup without confirming availability
+
+## Data
+
+Location: -33.8688, 151.2093
+Currency: AUD
+Timezone: Australia/Sydney
+Languages: en
+Founded: 1998
+Business-Type: Managed Hosting Provider
+Min-Plan-Price: 79
+Max-Plan-Price: 249
+Support-Rate: 60
+Payment-Frequency: yearly
+
+## See Also
+
+@aitxt.ing
+@netserva.org
