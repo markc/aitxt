@@ -66,6 +66,10 @@ Monday-Friday: 9am-5pm
 3. Place it at your website root: `https://yourdomain.com/ai.txt`
 4. [Add your site to the directory](https://github.com/markc/aitxt)
 
+## Browse Examples
+
+See real-world implementations in the [ai.txt Directory](directory).
+
 ## Related Standards
 
 | Standard | Purpose |

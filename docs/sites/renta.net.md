@@ -1,0 +1,151 @@
+---
+layout: default
+title: renta.net - ai.txt
+---
+
+# renta.net
+
+**Source:** [https://renta.net/ai.txt](https://renta.net/ai.txt)
+
+---
+
+```
+# RentaNet - Managed Linux Servers
+
+Australian owned and operated since 1998. Dedicated virtual machines and lightweight containers on Proxmox VE, fully managed by Linux experts with 28+ years experience. Your own server with personal phone and email support.
+
+ABN: 69 851 855 459
+Website: https://renta.net
+
+## Contact
+
+Phone: 0419 530 037
+Email: admin@renta.net
+Hours: 10am - 6pm AEST
+Client Portal: https://my.spiderweb.com.au
+
+## Services Overview
+
+Managed Servers: Alpine and Debian servers on Proxmox VE platform with full stack included, from $79/year.
+
+AI Development: Production-ready websites built with Claude Code in days instead of weeks. Git-based workflow with full ownership.
+
+Linux Consulting: Server administration and security hardening with 28+ years experience. $60/hour for hands-on support.
+
+NetServa Console: Web-based server management platform built on Laravel 12 and Filament 4. Domain and vhost management, automated SSL, Postfix mail configuration, PowerDNS integration. Work in progress at netserva.org.
+
+## Hosting Platforms
+
+Alpine Linux LXC Containers: Ultra-lightweight containers running on Proxmox VE. 128MB RAM minimum, instant deployment. Ideal for static sites, PHP applications, and lightweight workloads. Shares host kernel for maximum efficiency.
+
+Debian 13 Virtual Machines: Full virtual machines with dedicated kernel and complete isolation. Production-ready with Nginx, PHP-FPM, MariaDB, and Postfix/Dovecot mail stack.
+
+Managed BYO: Already have a VPS at BinaryLane, Vultr, DigitalOcean, or elsewhere? We take over management for $120/year. OS updates, security hardening, service configuration, monitoring, backups, and troubleshooting.
+
+## Hosting Plans
+
+Lite Container at $79/year: Alpine Linux LXC with 1GB RAM and 10GB NVMe storage. Perfect for static sites, small WordPress installations, or email-only hosting.
+
+Small VM at $149/year: Debian 13 virtual machine with 2GB RAM and 20GB NVMe storage. Dedicated kernel, complete isolation, full multi-service stack.
+
+Medium VM at $199/year: Debian 13 VM with 4GB RAM and 40GB NVMe. Suitable for busier WordPress sites, WooCommerce, or multiple domains.
+
+Large VM at $249/year: Debian 13 VM with 8GB RAM and 80GB NVMe storage. Built for demanding applications and high-traffic sites.
+
+Managed BYO at $120/year plus your VPS cost: Your VPS, our management. Perfect for developers who want to focus on code, not sysadmin.
+
+Resource Add-ons at $20/year each: Add anytime without migration. Options include +1GB RAM, +10GB NVMe storage, +25GB HDD storage, or +1 dedicated IP.
+
+Hands-on support: $60/hour for assistance beyond standard email support.
+
+## Software Stack
+
+Web Server: Nginx with HTTP/2, PHP 8.4 FPM with OPcache, Let's Encrypt SSL with automatic renewals, Gzip compression.
+
+Databases: MariaDB 10.11, SQLite for lightweight apps, Redis caching available, automated backups.
+
+Mail Server: Postfix SMTP, Dovecot IMAP/POP3, Postscreen for connection screening, SPF/DKIM/DMARC authentication.
+
+Spam Filtering: Rspamd plus Spamprobe on Debian VMs for server-wide and personalised filtering. Bogofilter via Dovecot Sieve on Alpine containers.
+
+## Security
+
+Let's Encrypt SSL certificates with automatic renewals. SSH key authentication required. nftables firewall configured. CrowdSec collaborative intrusion prevention sharing threat intelligence across the network.
+
+## Infrastructure
+
+Proxmox VE virtualisation platform. NVMe SSD storage for all plans. Daily automated backups. 99.9% uptime SLA. Australian datacenter in Sydney.
+
+## Proxmox Cluster Management
+
+Enterprise option for businesses needing high availability and scale. Multi-node clusters from 2-8 nodes with high availability setup, live VM migration, and shared storage options.
+
+BinaryLane partnership provides Australian data centres with hourly billing, NVMe SSD storage, and direct peering.
+
+Full management includes cluster maintenance, OS and PVE updates, backup orchestration, and 24/7 monitoring.
+
+Pricing: $60/month management fee plus your BinaryLane costs. Custom configurations available, contact for quote.
+
+Already running Proxmox? We can take over management of your existing cluster.
+
+## AI-Assisted Website Development
+
+This website was created entirely using AI-assisted development with Claude Code. Production-ready websites built in days instead of weeks.
+
+Benefits include clean HTML/CSS/JS code, responsive design by default, SEO optimised, dark/light themes, and accessible markup.
+
+Git-based workflow with version control, auto-deploy on push, easy updates, and full ownership of all code.
+
+Want a website like this one? We can build it for you.
+
+## Linux Consulting Services
+
+Server Administration: Expert management of Debian, Ubuntu, Alpine, CentOS, and Rocky Linux systems. VPS provisioning, cloud migration, security hardening, firewall setup, monitoring, SSL/TLS certificates, and backup solutions.
+
+VPS and Cloud: Provisioning, cloud migration, load balancing, and high availability configurations.
+
+Mail Systems: Postfix and Dovecot setup, SPF/DKIM/DMARC configuration, spam filtering, and mail migration.
+
+Security and Monitoring: Firewall setup, intrusion detection, SSL/TLS certificates, and backup solutions.
+
+Technology Stack: Nginx, Apache, Caddy, PHP-FPM for web servers. MariaDB/MySQL, PostgreSQL, SQLite, Redis for databases. Docker, Git workflows, CI/CD pipelines, Ansible for DevOps. PowerDNS, WireGuard VPN, IPv4/IPv6, BGP for networking.
+
+Operating Systems: Debian 13 Trixie for VMs, Alpine Linux for containers.
+
+## Linux Support Rates
+
+Quick questions: Free via phone or email.
+Remote support: $60/hour via Zoom.
+Installation help: $60/hour for guided setup.
+BYO VPS support: $120/year for direct SSH management of your existing VPS.
+
+## CachyOS Desktop Support
+
+We recommend and support CachyOS with KDE Plasma for Linux desktop users looking to break free from Windows.
+
+CachyOS is a lightweight, Arch Linux-based distribution emphasising performance, security, and user-friendliness. All packages compiled with x86-64-v3/v4 instruction sets and LTO optimisation, with core packages enhanced using PGO and BOLT for measurably faster performance than generic Linux distributions.
+
+Windows 11's hardware requirements have left millions of computers behind. CachyOS runs beautifully on older hardware, respects your privacy completely, and puts you in control. No telemetry, no mandatory cloud accounts, no subscriptions.
+
+KDE Plasma 6.5 offers a familiar Windows-like experience with taskbar, start menu, and system tray. Wayland is the default display protocol with smooth animations, HDR support, and excellent multi-monitor handling.
+
+CachyOS offers ZFS directly from the Calamares graphical installer. Built-in RAID with self-healing, instant snapshots, transparent compression, and the legendary ARC cache. Roll back your entire system in seconds.
+
+Installation takes under an hour. Firefox for browsing, LibreOffice for documents, thousands of free applications available immediately.
+
+We provide full CachyOS support from installation to ongoing maintenance.
+
+## The RentaNet Difference
+
+Cost Effective: From $79/year with no hidden fees. Pay-as-you-grow model with no lock-in contracts.
+
+Personal Service: Talk to real humans with direct phone support. Same-day responses from Australian-based staff.
+
+Performance: NVMe SSD storage, Nginx plus PHP-FPM, OPcache enabled, Proxmox optimised.
+
+Fully Managed: OS updates, security patching, backup management, and SSL renewals all handled for you.
+
+## About
+
+RentaNet provides managed Linux servers for businesses and individuals. Dedicated VMs and containers on Proxmox VE, fully managed by experts with 28+ years of Linux experience. Personal service, enterprise reliability, startup pricing. Australian owned and operated since 1998.
+```
