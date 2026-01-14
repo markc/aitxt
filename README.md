@@ -1,87 +1,97 @@
 # ai.txt
 
-A proposed web standard for AI-readable website summaries.
+A web standard for AI-readable website summaries.
+
+**Specification:** https://aitxt.ing
 
 ## What is ai.txt?
 
 Just as `robots.txt` tells search engine crawlers how to behave, `ai.txt` tells AI assistants what a website is about.
 
-When someone asks an AI assistant about a business, the AI typically has to crawl multiple web pages, parse complex HTML, and piece together information from navigation menus, footers, and scattered content. This is slow, error-prone, and often misses important details buried in subpages—or worse, inside images.
+Place a plain text file at `https://example.com/ai.txt` containing structured information about your business. AI agents fetch one small file and immediately have complete context.
 
-An `ai.txt` file solves this by providing a single, plain text summary of everything an AI might need to know:
+## Quick Start
 
-- Contact details
-- Services offered
-- Pricing
-- Technical specifications
-- Business hours
-- Key policies
-
-The AI fetches one small file and immediately has complete context.
-
-## Format
-
-The format is deliberately simple: **plain text with minimal markdown headings** for structure.
-
-- No HTML parsing required
-- No JavaScript rendering
-- No cookie consent popups to navigate
-- Any AI system can fetch and understand it immediately
-
-Place the file at the root of your website: `https://example.com/ai.txt`
-
-## Example
+Create `/ai.txt` at your website root:
 
 ```
-# Example Business
+# Your Business Name
 
-## About
-Example Business is a web development agency based in Sydney, Australia.
-Founded in 2020, we specialize in modern web applications.
+Brief description of your business.
+
+Updated: 2026-01-14
+AI-Contact: corrections@example.com
 
 ## Services
-- Custom web development
-- E-commerce solutions
-- API development
-- Technical consulting
+- Service one
+- Service two
 
 ## Pricing
-- Consultation: Free initial 30-minute call
-- Hourly rate: $150 AUD
-- Project-based: Starting from $5,000 AUD
+- Basic: $X/month
+- Pro: $Y/month
 
 ## Contact
-- Email: hello@example.com
-- Phone: +61 2 1234 5678
-- Address: 123 Main Street, Sydney NSW 2000
+Email: hello@example.com
+Phone: +1 234 567 8900
+Hours: Monday-Friday 9am-5pm
 
-## Hours
-Monday-Friday: 9am-5pm AEST
+## We Do Not Offer
+- 24/7 support
+- Refunds after 30 days
 ```
 
-## Benefits
+## Features
 
-**For visitors:** Get accurate information about businesses through AI assistants instead of hallucinated or outdated details.
+### Discovery
+- **Primary:** Fetch `https://example.com/ai.txt`
+- **Alternate:** DNS TXT record at `_ai.example.com` pointing to the file URL
 
-**For businesses:** Control your AI-facing narrative rather than leaving it to chance. As AI assistants become a primary way people discover and evaluate services, having a clear `ai.txt` becomes as important as having a clear website.
+### Linking
+Reference related sites with `@domain` syntax:
+```
+## See Also
+@parent-company.com
+@partner.org
+```
 
-## Related Standards
+### Negative Assertions
+Prevent AI hallucination by explicitly stating what you don't offer:
+```
+## We Do Not Offer
+- Weekend support
+- International shipping
+```
 
-- `robots.txt` - Instructions for search engine crawlers
-- `sitemap.xml` - Site structure for search engines
-- `security.txt` - Security contact information
-- `humans.txt` - Information about the people behind the website
+### Language Variants
+```
+/ai.txt      (default)
+/ai.fr.txt   (French)
+/ai.de.txt   (German)
+```
+
+### Metadata
+```
+Updated: 2026-01-14
+Canonical: https://example.com/ai.txt
+AI-Contact: corrections@example.com
+```
+
+## For AI Developers
+
+1. Check DNS TXT record `_ai.example.com` first
+2. Fall back to `https://example.com/ai.txt`
+3. Respect `Canonical` field if present
+4. Follow `@domain` links for additional context
+5. Honor negative assertions — don't invent capabilities
 
 ## Sites Using ai.txt
 
-See [SITES.md](SITES.md) for a community-maintained list of websites using ai.txt.
-
-To add your site, submit a pull request adding your domain to the list.
+See [SITES.md](SITES.md) or the [directory](https://aitxt.ing/directory.html).
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
+Submit a pull request to add your site or improve the specification.
 
 ## License
 
-This specification is released into the public domain via [CC0](LICENSE).
+Released into the public domain via [CC0](LICENSE).

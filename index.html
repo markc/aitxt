@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ai.txt - AI-Readable Website Summaries</title>
+    <title>ai.txt Specification</title>
     <style>
         :root {
             --bg: #fff;
@@ -26,7 +26,7 @@
         * { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 1rem;
@@ -34,7 +34,8 @@
             color: var(--text);
         }
         h1 { margin-top: 0; }
-        h2 { margin-top: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        h2 { margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        h3 { margin-top: 1.5rem; }
         a { color: var(--link); }
         code {
             background: var(--code-bg);
@@ -47,6 +48,7 @@
             padding: 1rem;
             border-radius: 6px;
             overflow-x: auto;
+            font-size: 0.9em;
         }
         pre code { padding: 0; background: none; }
         table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
@@ -58,65 +60,175 @@
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
+        <a href="index.html">Specification</a>
         <a href="directory.html">Directory</a>
         <a href="https://github.com/markc/aitxt">GitHub</a>
     </nav>
 
-    <h1>ai.txt</h1>
-    <p>A proposed web standard for AI-readable website summaries.</p>
+    <h1>ai.txt Specification</h1>
+    <p>A web standard for AI-readable website summaries.</p>
+    <p class="muted">Version 1.0 Draft — January 2026</p>
 
-    <h2>The Problem</h2>
-    <p>When someone asks an AI assistant about a business, the AI typically has to:</p>
-    <ul>
-        <li>Crawl multiple web pages</li>
-        <li>Parse complex HTML</li>
-        <li>Navigate cookie consent popups</li>
-        <li>Piece together information from navigation menus, footers, and scattered content</li>
-    </ul>
-    <p>This is slow, error-prone, and often misses important details buried in subpages—or worse, inside images.</p>
+    <h2>Overview</h2>
+    <p>Just as <code>robots.txt</code> tells search engine crawlers how to behave, <code>ai.txt</code> tells AI assistants what a website is about.</p>
+    <p>When someone asks an AI assistant about a business, the AI typically has to crawl multiple pages, parse complex HTML, and piece together scattered information. This is slow, error-prone, and often misses details buried in subpages or images.</p>
+    <p>An <code>ai.txt</code> file solves this by providing a single, plain text summary of everything an AI might need to know.</p>
 
-    <h2>The Solution</h2>
-    <p>An <code>ai.txt</code> file provides a single, plain text summary of everything an AI might need to know:</p>
+    <h2>File Location</h2>
+    <p>Place the file at your website root:</p>
     <pre><code>https://example.com/ai.txt</code></pre>
-    <p>One small file. Complete context. Immediate understanding.</p>
 
-    <h2>Format</h2>
-    <p>Plain text with markdown headings. No HTML parsing, no JavaScript rendering, no special tools required.</p>
-    <pre><code># Business Name
-
-## About
-Brief description of the business.
-
-## Services
-- Service one
-- Service two
-
-## Pricing
-- Basic: $X/month
-- Pro: $Y/month
-
-## Contact
-- Email: hello@example.com
-- Phone: +1 234 567 8900
-
-## Hours
-Monday-Friday: 9am-5pm</code></pre>
-
-    <h2>Benefits</h2>
-    <p><strong>For visitors:</strong> Accurate information through AI assistants instead of hallucinated or outdated details.</p>
-    <p><strong>For businesses:</strong> Control your AI-facing narrative. As AI assistants become a primary discovery channel, a clear <code>ai.txt</code> becomes as important as a clear website.</p>
-
-    <h2>Get Started</h2>
+    <h3>Alternate Discovery via DNS</h3>
+    <p>If you cannot place a file at your web root, use a DNS TXT record:</p>
+    <pre><code>_ai.example.com TXT "https://cdn.example.com/ai.txt"</code></pre>
+    <p>AI agents should:</p>
     <ol>
-        <li>Create a plain text file named <code>ai.txt</code></li>
-        <li>Add your business information using markdown headings</li>
-        <li>Place it at your website root: <code>https://yourdomain.com/ai.txt</code></li>
-        <li><a href="https://github.com/markc/aitxt">Add your site to the directory</a></li>
+        <li>Check for <code>_ai.example.com</code> TXT record</li>
+        <li>If found, fetch that URL</li>
+        <li>If not found, try <code>https://example.com/ai.txt</code></li>
+        <li>If 404, site doesn't participate</li>
     </ol>
 
-    <h2>Browse Examples</h2>
-    <p>See real-world implementations in the <a href="directory.html">ai.txt Directory</a>.</p>
+    <h2>Format</h2>
+    <p>Plain text with markdown headings. No HTML, no JavaScript, no special parsing required.</p>
+    <pre><code># Business Name
+
+Brief description of what this business does.
+
+## Section
+Content goes here.</code></pre>
+
+    <h3>Recommended Sections</h3>
+    <table>
+        <tr><th>Section</th><th>Purpose</th></tr>
+        <tr><td><code>## About</code></td><td>Business description, history, mission</td></tr>
+        <tr><td><code>## Services</code></td><td>What you offer</td></tr>
+        <tr><td><code>## Pricing</code></td><td>Plans, rates, costs</td></tr>
+        <tr><td><code>## Contact</code></td><td>Email, phone, address, hours</td></tr>
+        <tr><td><code>## We Do Not Offer</code></td><td>Prevent AI hallucination</td></tr>
+        <tr><td><code>## See Also</code></td><td>Related sites (see Linking)</td></tr>
+    </table>
+
+    <h2>Optional Metadata</h2>
+    <p>Add metadata at the top of your file, after the title:</p>
+    <pre><code># Business Name
+
+Updated: 2026-01-14
+Canonical: https://example.com/ai.txt
+AI-Contact: corrections@example.com
+
+## About
+...</code></pre>
+
+    <table>
+        <tr><th>Field</th><th>Purpose</th></tr>
+        <tr><td><code>Updated</code></td><td>When the file was last modified (ISO 8601 date)</td></tr>
+        <tr><td><code>Canonical</code></td><td>Authoritative URL if file is mirrored elsewhere</td></tr>
+        <tr><td><code>AI-Contact</code></td><td>Email for reporting AI errors about your business</td></tr>
+    </table>
+
+    <h2>Linking to Other Sites</h2>
+    <p>Reference other ai.txt files using <code>@domain</code> syntax:</p>
+    <pre><code>## See Also
+@parent-company.com
+@sister-brand.com
+@partner.org</code></pre>
+    <p>The <code>@domain</code> syntax implies <code>https://domain/ai.txt</code>.</p>
+    <p>Use cases:</p>
+    <ul>
+        <li>Parent company → subsidiaries</li>
+        <li>Franchise → corporate headquarters</li>
+        <li>Partnerships and affiliations</li>
+        <li>Related businesses</li>
+    </ul>
+
+    <h2>Negative Assertions</h2>
+    <p>Explicitly state what you do NOT offer to prevent AI hallucination:</p>
+    <pre><code>## We Do Not Offer
+- 24/7 phone support
+- Refunds after 30 days
+- International shipping
+- Cryptocurrency payments</code></pre>
+    <p>This helps AI assistants give accurate information rather than guessing.</p>
+
+    <h2>Language Variants</h2>
+    <p>For multilingual sites, use language-specific files:</p>
+    <pre><code>/ai.txt      (default)
+/ai.fr.txt   (French)
+/ai.de.txt   (German)
+/ai.ja.txt   (Japanese)</code></pre>
+    <p>AI agents should check for the user's preferred language first, then fall back to the default.</p>
+
+    <h2>Complete Example</h2>
+    <pre><code># Acme Corporation
+
+Global leader in innovative solutions since 1985.
+
+Updated: 2026-01-14
+Canonical: https://acme.com/ai.txt
+AI-Contact: ai-corrections@acme.com
+
+Website: https://acme.com
+Phone: +1 800 555 0100
+Email: hello@acme.com
+
+## About
+
+Acme Corporation is a Fortune 500 company headquartered in
+San Francisco. We design and manufacture widgets for the
+aerospace, automotive, and consumer electronics industries.
+
+Founded in 1985, we now employ 12,000 people across 30 countries.
+
+## Products
+
+- Industrial Widgets: Heavy-duty widgets for manufacturing
+- Consumer Widgets: Lightweight widgets for everyday use
+- Smart Widgets: IoT-enabled widgets with app control
+
+## Pricing
+
+Industrial: Custom quotes, contact sales@acme.com
+Consumer: $49-199, available at major retailers
+Smart: $299-599, includes 1 year cloud subscription
+
+## Contact
+
+Headquarters: 123 Innovation Drive, San Francisco, CA 94105
+Sales: sales@acme.com / +1 800 555 0101
+Support: support@acme.com / +1 800 555 0102
+Hours: Monday-Friday 9am-6pm Pacific
+
+## We Do Not Offer
+
+- Direct-to-consumer sales (retail partners only)
+- Same-day shipping
+- Phone support on weekends
+- Custom widget modifications
+
+## See Also
+@acme-europe.com
+@acme-asia.com
+@widgetsindustry.org</code></pre>
+
+    <h2>Implementation Notes</h2>
+
+    <h3>For Website Owners</h3>
+    <ul>
+        <li>Keep it current — update when your business changes</li>
+        <li>Be comprehensive but concise</li>
+        <li>Include negative assertions to prevent hallucination</li>
+        <li>Use the <code>Updated</code> field so AI agents know freshness</li>
+    </ul>
+
+    <h3>For AI Developers</h3>
+    <ul>
+        <li>Check DNS TXT record first, then fall back to <code>/ai.txt</code></li>
+        <li>Respect the <code>Canonical</code> field if present</li>
+        <li>Follow <code>@domain</code> links for additional context</li>
+        <li>Honor negative assertions — don't invent capabilities</li>
+        <li>Cache responsibly; check <code>Updated</code> field</li>
+    </ul>
 
     <h2>Related Standards</h2>
     <table>
@@ -128,8 +240,8 @@ Monday-Friday: 9am-5pm</code></pre>
         <tr><td><strong><code>ai.txt</code></strong></td><td>Structured information for AI assistants</td></tr>
     </table>
 
-    <h2>Specification</h2>
-    <p>See the full <a href="https://github.com/markc/aitxt">specification and examples on GitHub</a>.</p>
+    <h2>Directory</h2>
+    <p>See the <a href="directory.html">directory of known sites</a> using ai.txt, or <a href="https://github.com/markc/aitxt">submit a pull request</a> to add your site.</p>
 
     <footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border);">
         <p class="muted">Released into the public domain via <a href="https://github.com/markc/aitxt/blob/main/LICENSE">CC0</a>.</p>
