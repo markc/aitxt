@@ -1,29 +1,13 @@
 # Sites Using ai.txt
 
-A community-maintained list of websites that have implemented ai.txt.
-
-## How to Add Your Site
-
-Submit a pull request adding your domain to the appropriate category below. Please maintain alphabetical order within each category.
-
----
+Submit a pull request to add your site. Include the category and your ai.txt URL.
 
 ## Hosting & Infrastructure
 
-- rentanet.com.au
+- https://renta.net/ai.txt
 
 ## Software & Technology
 
-<!-- Add sites here -->
-
 ## E-commerce
 
-<!-- Add sites here -->
-
 ## Professional Services
-
-<!-- Add sites here -->
-
-## Other
-
-<!-- Add sites here -->
