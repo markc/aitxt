@@ -293,6 +293,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fade-in-up 0.6s ease-out forwards;
+            transition: all 0.3s ease-out;
         }
 
         .feature-card:nth-child(1) { animation-delay: 0s; }
@@ -318,9 +319,8 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(255, 149, 0, 0.15);
-            transition: all 0.2s ease-out;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(255, 149, 0, 0.2);
         }
 
         footer {
