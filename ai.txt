@@ -83,6 +83,8 @@ Structure your ai.txt with these sections (or invent your own):
 
 **Contact** — Email, website, support information
 
+**Permissions** — Training consent, usage rights, data policies (optional; use plain prose)
+
 **See Also** — Links to related resources
 
 None are required. Start simple: Title, brief description, maybe 2-3 sections explaining what matters.
@@ -210,3 +212,9 @@ Point your AI agents to https://aitxt.ing/ai.txt as the canonical reference.
 [Markdown Reference](https://commonmark.org/) — Plain-text formatting standard used for content
 
 Real-world implementations: [NetServa](https://netserva.org/ai.txt), [Renta](https://renta.net/ai.txt)
+
+## Prior Art
+
+Spawning AI published an [ai.txt specification in 2023](https://spawning.ai/ai.txt) focused on AI training consent and data permissions. That work addresses a specific and important problem: giving creators control over whether their content is used for model training.
+
+This specification takes a complementary approach: providing general context and boundaries for any AI interaction. The two purposes are distinct. Creators who want fine-grained training consent control can use Spawning's format. Those who want to describe scope and prevent hallucination can use this format. Both files can coexist on the same site, each serving its purpose. Implementers can also express training consent preferences directly in a Permissions section using plain prose if they prefer not to adopt specialized syntax.
