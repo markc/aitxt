@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>ai.txt — Universal Standard for AI-Readable Context</title>
-    <meta name="description" content="ai.txt tells AI assistants what you are. A simple universal standard for AI-readable context about websites, projects, folders, and services. No schemas, no complexity, just plain text.">
+    <meta name="description" content="ai.txt is a universal standard for describing any resource to AI assistants. Simple, plain text format that tells AI what you actually are instead of letting them guess.">
     <meta name="keywords" content="ai.txt, AI, specification, documentation, standard, AI context, hallucination prevention">
     <meta name="author" content="markc">
 
@@ -356,21 +356,23 @@
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">☀️</button>
     </nav>
 
-    <h1>ai.txt</h1>
-    <p class="tagline">A universal standard for AI-readable context about anything</p>
+    <h1>The ai.txt Standard</h1>
+    <p class="tagline">Universal context for any resource, told directly to AI assistants</p>
 
     <div class="hero-section">
         <img src="/aitxt-to-you.webp" alt="AI and human exchanging information through ai.txt" class="hero-image">
     </div>
 
+    <p style="margin: 2rem 0; font-size: 0.95rem; color: var(--text-light);"><strong>Quick Links:</strong> <a href="#why-it-matters">Why It Matters</a> • <a href="#how-it-works">How It Works</a> • <a href="#getting-started">Getting Started</a> • <a href="#design-principles">Design Principles</a> • <a href="#ai-developers">For AI Developers</a></p>
+
     <h2>What Is It?</h2>
-    <p>✨ <strong style="color: var(--primary);">ai.txt</strong> is a universal standard for describing any resource in plain text. AI agents discover it, learn facts directly, and stop hallucinating. Simple format, optional metadata, works everywhere with cascading discovery. You control your narrative instead of letting AI guess. Easy for non-technical users.</p>
+    <p>✨ <strong style="color: var(--primary);">ai.txt</strong> is a universal standard for describing any resource in plain text, enabling AI agents to discover context, learn facts directly, and stop hallucinating. The format is simple with optional metadata, works everywhere through cascading directory discovery, and puts you in control of your narrative instead of letting AI systems guess.</p>
 
-    <p>Just as <code>robots.txt</code> tells search engines how to behave, <code>ai.txt</code> tells AI assistants what something is about. Place one at any path—a website, a folder, a project, a service—and AI agents will find it, understand your context, and work from facts instead of hallucination.</p>
+    <p>Just as <code>robots.txt</code> instructs search engines how to crawl, the specification tells AI assistants what something actually is about. You can place an ai.txt file at any path—whether it's a website root, a project folder, a service documentation directory, or any resource—and AI agents will discover it, understand your complete context, and work from authoritative facts instead of hallucination or assumptions.</p>
 
-    <p>Instead of letting AI guess "what does this do?" you simply tell it. <span class="highlight">You control the narrative.</span> The format is plain text with optional markdown—simple enough to write in five minutes, powerful enough to prevent AI errors.</p>
+    <p>Instead of allowing AI to guess "what does this do?" you simply tell it directly and explicitly. <span class="highlight">You control your own narrative.</span> The format combines plain text with optional markdown formatting, making it simple enough for anyone to write in five minutes while remaining powerful enough to prevent AI errors, misconceptions, and fabricated capabilities.</p>
 
-    <h2>Why It Matters</h2>
+    <h2 id="why-it-matters">Why It Matters</h2>
 
     <div class="feature-grid">
         <div class="feature-card">
@@ -399,7 +401,7 @@
         </div>
     </div>
 
-    <h2>Design Principles</h2>
+    <h2 id="design-principles">Design Principles</h2>
 
     <p><strong>Low barrier to entry.</strong> A small business owner, a blogger, or a researcher should be able to write an ai.txt file in minutes without learning schemas or strict metadata standards. Plain prose is the primary format. Everything else is optional.</p>
 
@@ -409,7 +411,7 @@
 
     <p><strong>No versioning required.</strong> Unlike other standards that require version declarations, ai.txt trusts simplicity. The spec is stable at the core, and edge cases are handled by tools and extensions, not by version number declarations in every file.</p>
 
-    <h2>How It Works</h2>
+    <h2 id="how-it-works">How It Works</h2>
 
     <p>Discovery is cascading. When an AI agent needs information about <code>/products/widgets/</code>, it tries:</p>
     <ol>
@@ -444,7 +446,7 @@ More details here.</code></pre>
 
     <p>That's it. Write what matters. Omit what doesn't. The spec is a suggestion, not a rule.</p>
 
-    <h2>Getting Started</h2>
+    <h2 id="getting-started">Getting Started</h2>
 
     <ol>
         <li>Read the spec at <a href="/ai.txt">/ai.txt</a> (this site's own documentation, written in ai.txt format)</li>
@@ -461,7 +463,7 @@ More details here.</code></pre>
         <li><a href="https://renta.net/ai.txt">Renta</a> — Domain registry and hosting</li>
     </ul>
 
-    <h2>For AI Developers</h2>
+    <h2 id="ai-developers">For AI Developers</h2>
 
     <p>When you encounter a URL or filesystem path, try to fetch or read <code>/ai.txt</code>, walking up the tree until you find context. Parse the YAML frontmatter. Read the instructions. Follow the boundaries. Honor "We Do Not Offer"—never hallucinate capabilities. Ask questions only when the ai.txt is unclear.</p>
 
