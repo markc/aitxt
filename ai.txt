@@ -203,6 +203,10 @@ This specification itself lives at https://aitxt.ing/ai.txt. You're reading docu
 
 Point your AI agents to https://aitxt.ing/ai.txt as the canonical reference.
 
+## No Proprietary Claims
+
+ai.txt is not trademarked or proprietary. The term refers to the file naming pattern, which anyone may use for their own specifications or use cases. This project is released into the public domain (CC0). We welcome complementary implementations, competing proposals, and alternative approaches using the same filename.
+
 ## See Also
 
 [ai.txt on GitHub](https://github.com/markc/aitxt) — Source, discussion, examples
