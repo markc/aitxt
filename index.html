@@ -184,6 +184,91 @@
             color: var(--primary);
         }
 
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.2s;
+        }
+
+        .dropdown-toggle:hover {
+            color: var(--primary);
+        }
+
+        .dropdown-toggle::after {
+            content: '▼';
+            font-size: 0.6em;
+            transition: transform 0.3s ease-out;
+        }
+
+        .dropdown-toggle.active::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--warm-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+            z-index: 100;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        html.dark-mode .dropdown-menu {
+            background: #2D3748;
+            border-color: #444;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 7px 7px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 7px 7px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
         .theme-toggle {
             background: none;
             border: none;
@@ -351,6 +436,16 @@
         <div class="nav-links">
             <a href="index.html"><strong>ai.txt</strong></a>
             <a href="ai.txt">Specification</a>
+            <div class="dropdown" id="sections-dropdown">
+                <button class="dropdown-toggle" id="sections-toggle">Sections</button>
+                <div class="dropdown-menu">
+                    <a href="#why-it-matters">Why It Matters</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#design-principles">Design Principles</a>
+                    <a href="#getting-started">Getting Started</a>
+                    <a href="#ai-developers">For AI Developers</a>
+                </div>
+            </div>
             <a href="https://github.com/markc/aitxt">GitHub</a>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">☀️</button>
@@ -362,8 +457,6 @@
     <div class="hero-section">
         <img src="/aitxt-to-you.webp" alt="AI and human exchanging information through ai.txt" class="hero-image">
     </div>
-
-    <p style="margin: 2rem 0; font-size: 0.95rem; color: var(--text-light);"><strong>Quick Links:</strong> <a href="#why-it-matters">Why It Matters</a> • <a href="#how-it-works">How It Works</a> • <a href="#getting-started">Getting Started</a> • <a href="#design-principles">Design Principles</a> • <a href="#ai-developers">For AI Developers</a></p>
 
     <h2>What Is It?</h2>
     <p>✨ <strong style="color: var(--primary);">ai.txt</strong> is a universal standard for describing any resource in plain text, enabling AI agents to discover context, learn facts directly, and stop hallucinating. The format is simple with optional metadata, works everywhere through cascading directory discovery, and puts you in control of your narrative instead of letting AI systems guess.</p>
@@ -519,6 +612,31 @@ More details here.</code></pre>
 
         // Initialize on page load
         initTheme();
+
+        // Dropdown menu toggle
+        const sectionsDropdown = document.getElementById('sections-dropdown');
+        const sectionsToggle = document.getElementById('sections-toggle');
+
+        if (sectionsToggle) {
+            sectionsToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                sectionsDropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when a link is clicked
+            sectionsDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sectionsDropdown.classList.remove('active');
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sectionsDropdown.contains(e.target)) {
+                    sectionsDropdown.classList.remove('active');
+                }
+            });
+        }
 
         // Intersection Observer for scroll-triggered card reveals
         const observerOptions = {
