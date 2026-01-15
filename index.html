@@ -32,7 +32,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -47,33 +47,17 @@
             --link: #2563EB;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root:not(.dark-mode-light) {
-                --warm-bg: #1a1410;
-                --text: #F3F4F6;
-                --text-light: #D1D5DB;
-                --border: #374151;
-                --code-bg: #2D3748;
-                --link: #60A5FA;
-            }
-        }
-
+        /* Dark mode colors - better contrast for dark backgrounds */
         html.dark-mode {
-            --warm-bg: #1a1410;
-            --text: #F3F4F6;
-            --text-light: #D1D5DB;
-            --border: #374151;
-            --code-bg: #2D3748;
-            --link: #60A5FA;
-        }
-
-        html.dark-mode:not(.dark-mode) {
-            --warm-bg: #FFF8F0;
-            --text: #1F2937;
-            --text-light: #6B7280;
-            --border: #E5E7EB;
-            --code-bg: #F3F4F6;
-            --link: #2563EB;
+            --primary: #FFA500;
+            --secondary: #64B5F6;
+            --accent: #4ADE80;
+            --warm-bg: #0F0C0A;
+            --text: #F5F5F5;
+            --text-light: #B0B0B0;
+            --border: #2D2D2D;
+            --code-bg: #1A1A1A;
+            --link: #64B5F6;
         }
 
         * {
@@ -97,7 +81,7 @@
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             color: var(--text);
         }
@@ -187,8 +171,8 @@
         }
 
         nav a {
-            font-weight: 500;
-            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
             color: var(--text);
             transition: color 0.2s;
         }
