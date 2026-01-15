@@ -58,6 +58,18 @@ Same logic works for filesystem paths and HTTP URLs.
 - **Simple and readable:** Humans and AI both understand plain text
 - **Works everywhere:** HTTP, local folders, any path structure
 
+## Claude Code Integration
+
+The `/aitxt` skill discovers and displays ai.txt files for any project or URL:
+
+```bash
+/aitxt ~/Dev/my-project          # Find ai.txt in project or parents
+/aitxt https://example.com       # Fetch ai.txt from URL hierarchy
+/aitxt                           # Use current directory
+```
+
+The skill performs cascading discovery automatically, walking the directory tree or URL hierarchy until it finds an ai.txt file, then displays its full content and location.
+
 ## License
 
 CC0 Public Domain.
