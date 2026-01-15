@@ -3,85 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ai.txt Specification</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>ai.txt — Universal Standard for AI-Readable Context</title>
+    <meta name="description" content="ai.txt tells AI assistants what you are. A simple universal standard for AI-readable context about websites, projects, folders, and services. No schemas, no complexity, just plain text.">
+    <meta name="keywords" content="ai.txt, AI, specification, documentation, standard, AI context, hallucination prevention">
+    <meta name="author" content="markc">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitxt.ing">
+    <meta property="og:title" content="ai.txt — Universal Standard for AI-Readable Context">
+    <meta property="og:description" content="Tell AI assistants what you actually are. Simple, plain text format with optional metadata. Works everywhere.">
+    <meta property="og:image" content="https://aitxt.ing/aitxt-to-you.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="900">
+    <meta property="og:image:height" content="900">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ai.txt — Universal Standard for AI-Readable Context">
+    <meta name="twitter:description" content="Tell AI assistants what you actually are. Simple, plain text format.">
+    <meta name="twitter:image" content="https://aitxt.ing/aitxt-to-you.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg: #fff;
-            --text: #222;
-            --muted: #666;
-            --border: #ddd;
-            --code-bg: #f5f5f5;
-            --link: #0066cc;
+            --primary: #FF9500;
+            --secondary: #1E3A8A;
+            --accent: #10B981;
+            --warm-bg: #FFF8F0;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --border: #E5E7EB;
+            --code-bg: #F3F4F6;
+            --link: #2563EB;
         }
+
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #1a1a1a;
-                --text: #e0e0e0;
-                --muted: #999;
-                --border: #333;
-                --code-bg: #2a2a2a;
-                --link: #6db3f2;
+                --warm-bg: #1a1410;
+                --text: #F3F4F6;
+                --text-light: #D1D5DB;
+                --border: #374151;
+                --code-bg: #2D3748;
+                --link: #60A5FA;
             }
         }
-        * { box-sizing: border-box; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             line-height: 1.7;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem 1rem;
-            background: var(--bg);
+            padding: 2rem 1.5rem;
+            background: var(--warm-bg);
             color: var(--text);
         }
-        h1 { margin-top: 0; }
-        h2 { margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        h3 { margin-top: 1.5rem; }
-        a { color: var(--link); }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            margin-top: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        strong {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
         code {
             background: var(--code-bg);
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
+            color: var(--secondary);
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
             font-size: 0.9em;
+            font-family: 'Courier New', monospace;
         }
+
         pre {
             background: var(--code-bg);
-            padding: 1rem;
-            border-radius: 6px;
+            padding: 1.5rem;
+            border-radius: 8px;
             overflow-x: auto;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
         }
-        pre code { padding: 0; background: none; }
-        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-        th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); }
-        .muted { color: var(--muted); }
-        nav { margin-bottom: 2rem; }
-        nav a { margin-right: 1rem; }
+
+        pre code {
+            padding: 0;
+            background: none;
+            color: var(--text);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        nav a {
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero-section {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .hero-image {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(255, 149, 0, 0.15);
+            margin: 0 auto 2rem;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--code-bg);
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .feature-card {
+                background: #2D3748;
+            }
+        }
+
+        .feature-card strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
+        <a href="index.html"><strong>ai.txt</strong></a>
         <a href="ai.txt">Specification</a>
         <a href="https://github.com/markc/aitxt">GitHub</a>
     </nav>
 
     <h1>ai.txt</h1>
-    <p>A universal standard for AI-readable context about anything.</p>
+    <p class="tagline">A universal standard for AI-readable context about anything.</p>
+
+    <div class="hero-section">
+        <img src="/aitxt-to-you.webp" alt="AI and human exchanging information through ai.txt" class="hero-image">
+    </div>
 
     <h2>What Is It?</h2>
     <p>Just as <code>robots.txt</code> tells search engines how to behave, <code>ai.txt</code> tells AI assistants what something is about. Place one at any path—a website, a folder, a project, a service—and AI agents will find it, understand your context, and work from facts instead of hallucination.</p>
 
-    <p>Instead of letting AI guess "what does this do?" you simply tell it. You control the narrative. The format is plain text with optional markdown—simple enough to write in five minutes, powerful enough to prevent AI errors.</p>
+    <p>Instead of letting AI guess "what does this do?" you simply tell it. <span class="highlight">You control the narrative.</span> The format is plain text with optional markdown—simple enough to write in five minutes, powerful enough to prevent AI errors.</p>
 
     <h2>Why It Matters</h2>
 
-    <p><strong>For service providers:</strong> Stop AI from making things up about your business. Put the truth in one place.</p>
-
-    <p><strong>For project maintainers:</strong> Describe scope, limitations, and capabilities in a way AI agents actually read and respect.</p>
-
-    <p><strong>For open source:</strong> Prevent hallucination about licensing, support, and what you actually offer. Say what you do and what you explicitly don't.</p>
-
-    <p><strong>For everyone:</strong> Simple, cacheable, offline-friendly. No databases, no JavaScript, no configuration. Just text.</p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <strong>Service Providers</strong>
+            <p>Stop AI from making things up about your business. Put the truth in one place.</p>
+        </div>
+        <div class="feature-card">
+            <strong>Project Maintainers</strong>
+            <p>Describe scope, limitations, and capabilities in a way AI agents actually read and respect.</p>
+        </div>
+        <div class="feature-card">
+            <strong>Open Source</strong>
+            <p>Prevent hallucination about licensing, support, and what you actually offer.</p>
+        </div>
+        <div class="feature-card">
+            <strong>Everyone</strong>
+            <p>Simple, cacheable, offline-friendly. No databases, no JavaScript, no configuration. Just text.</p>
+        </div>
+    </div>
 
     <h2>Design Principles</h2>
 
@@ -130,9 +369,9 @@ More details here.</code></pre>
 
     <h2>Real Examples</h2>
 
-    <p>See the spec at <a href="/ai.txt">/ai.txt</a> (this site's own documentation, written in ai.txt format).</p>
+    <p>See the full specification at <a href="/ai.txt">/ai.txt</a> (this site's own documentation, written in ai.txt format).</p>
 
-    <p>Real implementations:</p>
+    <p><strong>Real-world implementations:</strong></p>
     <ul>
         <li><a href="https://netserva.org/ai.txt">NetServa</a> — Enterprise infrastructure management platform</li>
         <li><a href="https://renta.net/ai.txt">Renta</a> — Domain registry and hosting</li>
@@ -147,7 +386,7 @@ More details here.</code></pre>
         <li>Include guidelines for how AI should handle your information</li>
     </ol>
 
-    <p>That's all. No approval process, no registry, no central authority. Just write one.</p>
+    <p>That's all. No approval process, no registry, no central authority. <span class="highlight">Just write one.</span></p>
 
     <h2>For AI Developers</h2>
 
@@ -159,8 +398,9 @@ More details here.</code></pre>
 
     <p><a href="https://spawning.ai/ai.txt">Spawning AI's ai.txt specification (2023)</a> addresses a complementary problem: AI training consent and data permissions. This spec focuses on general context and preventing hallucination. Both approaches can coexist—use them for their specific purposes, or combine them on the same site.</p>
 
-    <footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-        <p class="muted">Released into the public domain via <a href="https://github.com/markc/aitxt/blob/main/LICENSE">CC0</a>.</p>
+    <footer>
+        <p>Released into the public domain via <a href="https://github.com/markc/aitxt/blob/main/LICENSE">CC0</a>.</p>
+        <p style="margin-top: 0.5rem;"><a href="https://github.com/markc/aitxt">View on GitHub</a></p>
     </footer>
 </body>
 </html>
