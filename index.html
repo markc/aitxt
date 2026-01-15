@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>ai.txt — Universal Standard for AI-Readable Context</title>
-    <meta name="description" content="ai.txt is a universal standard for describing any resource to AI assistants. Simple, plain text format that tells AI what you actually are instead of letting them guess.">
-    <meta name="keywords" content="ai.txt, AI, specification, documentation, standard, AI context, hallucination prevention">
+    <title>ai.txt Specification - AI-Readable Context Standard</title>
+    <meta name="description" content="ai.txt is a universal specification for describing any resource to AI assistants. Plain text standard with optional YAML metadata. Enables AI agents to understand scope, limitations, and capabilities without hallucination.">
+    <meta name="keywords" content="ai.txt, specification, standard, AI context, AI-readable, hallucination prevention, plain text, documentation">
     <meta name="author" content="markc">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aitxt.ing">
-    <meta property="og:title" content="ai.txt — Universal Standard for AI-Readable Context">
-    <meta property="og:description" content="Tell AI assistants what you actually are. Simple, plain text format with optional metadata. Works everywhere.">
+    <meta property="og:title" content="ai.txt Specification - AI-Readable Context Standard">
+    <meta property="og:description" content="Universal specification for describing any resource to AI assistants. Plain text format with optional metadata. Works everywhere with cascading discovery.">
     <meta property="og:image" content="https://aitxt.ing/aitxt-to-you.webp">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:image:width" content="900">
@@ -22,9 +22,12 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ai.txt — Universal Standard for AI-Readable Context">
-    <meta name="twitter:description" content="Tell AI assistants what you actually are. Simple, plain text format.">
+    <meta name="twitter:title" content="ai.txt Specification - AI-Readable Context Standard">
+    <meta name="twitter:description" content="Universal specification for describing any resource to AI assistants using plain text.">
     <meta name="twitter:image" content="https://aitxt.ing/aitxt-to-you.webp">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/favicon.ico">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -453,8 +456,8 @@
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">☀️</button>
     </nav>
 
-    <h1>The ai.txt Standard</h1>
-    <p class="tagline">Universal context for any resource, told directly to AI assistants</p>
+    <h1>The ai.txt Specification</h1>
+    <p class="tagline">Universal context standard for any resource, told directly to AI assistants</p>
 
     <div class="hero-section">
         <img src="/aitxt-to-you.webp" alt="AI and human exchanging information through ai.txt" class="hero-image">
@@ -562,11 +565,11 @@ More details here.</code></pre>
 
     <p>When you encounter a URL or filesystem path, try to fetch or read <code>/ai.txt</code>, walking up the tree until you find context. Parse the YAML frontmatter. Read the instructions. Follow the boundaries. Honor "We Do Not Offer"—never hallucinate capabilities. Ask questions only when the ai.txt is unclear.</p>
 
-    <p>The canonical reference is <a href="/ai.txt">https://aitxt.ing/ai.txt</a>. Point your agents there to understand the spec.</p>
+    <p>The canonical reference is the <a href="/ai.txt">full specification</a>. Point your agents there to understand the spec.</p>
 
     <h2>On Adoption and Implementation</h2>
 
-    <p>The ai.txt specification succeeds through intentional implementation rather than passive discovery. Rather than waiting for AI systems to spontaneously respect ai.txt files, the spec functions as an instruction manual that developers actively consult. By referencing the canonical specification at <a href="/ai.txt">https://aitxt.ing/ai.txt</a>, developers learn the pattern and incorporate it into their workflows—whether creating ai.txt files for new projects, discovering existing ones, or building tools that understand and respect the format. This active adoption strategy is more realistic and sustainable than relying on automatic crawling or universal compliance.</p>
+    <p>The ai.txt specification succeeds through intentional implementation rather than passive discovery. Rather than waiting for AI systems to spontaneously respect ai.txt files, the spec functions as an instruction manual that developers actively consult. By referencing <a href="/ai.txt">the canonical specification</a>, developers learn the pattern and incorporate it into their workflows—whether creating ai.txt files for new projects, discovering existing ones, or building tools that understand and respect the format. This active adoption strategy is more realistic and sustainable than relying on automatic crawling or universal compliance.</p>
 
     <h2>On Durability and Versioning</h2>
 
