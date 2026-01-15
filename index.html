@@ -469,7 +469,7 @@
 
     <p>Just as <code>robots.txt</code> instructs search engines how to crawl, the specification tells AI assistants what something actually is about. You can place an ai.txt file at any path—whether it's a website root, a project folder, a service documentation directory, or any resource—and AI agents will discover it, understand your complete context, and work from authoritative facts instead of hallucination or assumptions.</p>
 
-    <p><strong style="color: var(--accent);">ai.txt creates a distributed context system</strong> where each project, service, and resource publishes its own authoritative information directly to AI agents. Like hypertext links knowledge across the web, ai.txt distributes context through cascading discovery—each ai.txt file stands alone yet connects to parent contexts. Instead of centralized metadata repositories, knowledge lives where it matters most: at the source.</p>
+    <p><strong style="color: var(--accent);">ai.txt creates a distributed context system</strong> where each project, service, and resource publishes its own authoritative information directly to AI agents. Like hypertext links documents across the web, ai.txt distributes context through cascading discovery and markdown links. Each ai.txt file can link to other ai.txt files, documentation, and resources—using standard markdown links that work across both local filesystem paths and HTTP URLs. An AI agent navigates a distributed maze of interconnected contexts, seamlessly blending local directories with web resources to incorporate into the current context. This is hypertext for AI: you control how your context relates to and references other contexts.</p>
 
     <p>Instead of allowing AI to guess "what does this do?" you simply tell it directly and explicitly. <span class="highlight">You control your own narrative.</span> The format combines plain text with optional markdown formatting, making it simple enough for anyone to write in five minutes while remaining powerful enough to prevent AI errors, misconceptions, and fabricated capabilities.</p>
 
@@ -567,6 +567,8 @@ More details here.</code></pre>
     <h2 id="ai-developers">For AI Developers</h2>
 
     <p>When you encounter a URL or filesystem path, try to fetch or read <code>/ai.txt</code>, walking up the tree until you find context. Parse the YAML frontmatter. Read the instructions. Follow the boundaries. Honor "We Do Not Offer"—never hallucinate capabilities. Ask questions only when the ai.txt is unclear.</p>
+
+    <p><strong>Build hypertext navigation into your agents:</strong> Parse markdown links within ai.txt files. These may point to related ai.txt files, documentation, or resources across both local filesystems and HTTP URLs. When appropriate, follow these links to incorporate additional context into the agent's working knowledge, building a distributed web of interconnected understanding. This transforms ai.txt from static metadata into an active navigation system.</p>
 
     <p>The canonical reference is the <a href="/ai.txt">full specification</a>. Point your agents there to understand the spec.</p>
 

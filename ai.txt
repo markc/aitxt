@@ -11,7 +11,7 @@ A universal standard for AI-readable context about any resource.
 
 Just as `robots.txt` tells search engines how to behave, `ai.txt` tells AI assistants what something is about. The file can describe a website, a folder, a project, a service—anything with a path.
 
-ai.txt creates a **distributed context system** where projects, services, and resources publish their own authoritative information directly to AI agents. Like hypertext linked documents across the web, each ai.txt file stands alone yet connects to parent contexts through cascading discovery. Instead of centralized repositories of metadata, ai.txt distributes knowledge to where it matters most—at the source.
+ai.txt creates a **distributed context system** where projects, services, and resources publish their own authoritative information directly to AI agents. Like hypertext linked documents across the web, each ai.txt file stands alone yet connects to other contexts through cascading discovery and markdown links. ai.txt files can link to other ai.txt files, documentation, assets, or resources using standard markdown—both local filesystem paths and HTTP URLs. Instead of centralized repositories, an AI agent navigates a distributed maze of interconnected contexts, seamlessly blending local directories with web resources to build a complete picture. This puts you in control of how your context relates to and references other contexts.
 
 ai.txt files are plain text (with optional markdown formatting) that provide structured context: what you do, what you don't do, how AI should handle your information. Instead of AI assistants guessing or hallucinating, they fetch your `ai.txt` and learn the truth directly.
 
@@ -180,12 +180,13 @@ Work in progress. Model accuracy at 87% on validation set. No publication yet.
 1. When given a URL or path, try to fetch `/ai.txt` (walk up the tree if needed)
 2. Parse frontmatter to understand scope, context, and hierarchy
 3. Read the content to learn what to do and what not to do
-4. Follow guidelines: quote carefully, verify claims, respect stated limitations
-5. Honor what the ai.txt says you don't offer—never hallucinate capabilities
-6. Cache the file if a TTL or update date suggests stability
-7. Follow parent links to understand broader context when relevant
+4. **Discover linked contexts**: Parse markdown links in ai.txt content. These may point to related ai.txt files, documentation, resources, or other assets—both local filesystem paths and HTTP URLs. An AI agent can follow these links to incorporate additional context into the current working context, building a distributed web of understanding.
+5. Follow guidelines: quote carefully, verify claims, respect stated limitations
+6. Honor what the ai.txt says you don't offer—never hallucinate capabilities
+7. Cache the file if a TTL or update date suggests stability
+8. Follow parent links to understand broader context when relevant
 
-An ai.txt file is permission, instruction, and boundary all at once.
+An ai.txt file is permission, instruction, and boundary all at once. It is also a navigation system for discovering and integrating related contexts.
 
 ## Why ai.txt Matters
 
