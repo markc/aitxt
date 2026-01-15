@@ -284,7 +284,8 @@
         }
 
         .feature-card {
-            background: white;
+            background: #FFFFFF;
+            color: var(--text);
             padding: 1.5rem;
             border-radius: 8px;
             border-left: 4px solid var(--primary);
@@ -301,15 +302,19 @@
         .feature-card:nth-child(5) { animation-delay: 0.4s; }
         .feature-card:nth-child(6) { animation-delay: 0.5s; }
 
-        @media (prefers-color-scheme: dark) {
-            .feature-card {
-                background: #2D3748;
-            }
+        html.dark-mode .feature-card {
+            background: #2D3748;
+            color: #F5F5F5;
         }
 
         .feature-card strong {
             display: block;
             margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        html.dark-mode .feature-card strong {
+            color: #64B5F6;
         }
 
         .feature-card:hover {
