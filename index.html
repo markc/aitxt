@@ -48,7 +48,7 @@
         }
 
         @media (prefers-color-scheme: dark) {
-            :root {
+            :root:not(.dark-mode-light) {
                 --warm-bg: #1a1410;
                 --text: #F3F4F6;
                 --text-light: #D1D5DB;
@@ -56,6 +56,24 @@
                 --code-bg: #2D3748;
                 --link: #60A5FA;
             }
+        }
+
+        html.dark-mode {
+            --warm-bg: #1a1410;
+            --text: #F3F4F6;
+            --text-light: #D1D5DB;
+            --border: #374151;
+            --code-bg: #2D3748;
+            --link: #60A5FA;
+        }
+
+        html.dark-mode:not(.dark-mode) {
+            --warm-bg: #FFF8F0;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --border: #E5E7EB;
+            --code-bg: #F3F4F6;
+            --link: #2563EB;
         }
 
         * {
@@ -159,6 +177,13 @@
             margin-bottom: 3rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--border);
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
         nav a {
@@ -170,6 +195,19 @@
 
         nav a:hover {
             color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         .hero-section {
@@ -284,9 +322,12 @@
 </head>
 <body>
     <nav>
-        <a href="index.html"><strong>ai.txt</strong></a>
-        <a href="ai.txt">Specification</a>
-        <a href="https://github.com/markc/aitxt">GitHub</a>
+        <div class="nav-links">
+            <a href="index.html"><strong>ai.txt</strong></a>
+            <a href="ai.txt">Specification</a>
+            <a href="https://github.com/markc/aitxt">GitHub</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">☀️</button>
     </nav>
 
     <h1>ai.txt</h1>
@@ -402,5 +443,36 @@ More details here.</code></pre>
         <p>Released into the public domain via <a href="https://github.com/markc/aitxt/blob/main/LICENSE">CC0</a>.</p>
         <p style="margin-top: 0.5rem;"><a href="https://github.com/markc/aitxt">View on GitHub</a></p>
     </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const THEME_KEY = 'aitxt-theme';
+
+        // Initialize theme from localStorage or system preference
+        function initTheme() {
+            const saved = localStorage.getItem(THEME_KEY);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = saved ? saved === 'dark' : prefersDark;
+
+            if (isDark) {
+                html.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                html.classList.remove('dark-mode');
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.classList.toggle('dark-mode');
+            localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // Initialize on page load
+        initTheme();
+    </script>
 </body>
 </html>
