@@ -1,0 +1,69 @@
+#!/bin/bash
+# aitxt — Discover and display ai.txt context files
+# Works with both local filesystem paths and HTTP URLs
+# Cascades up directory tree to find ai.txt
+# See https://aitxt.ing for the specification
+
+set -euo pipefail
+
+TARGET="${1:-.}"
+DEPTH=0
+MAX_DEPTH=10
+
+if [[ "$TARGET" == http* ]]; then
+    # HTTP URL discovery
+    echo "🔍 Discovering ai.txt at: $TARGET"
+    echo ""
+
+    # Try the direct path
+    URL_PATH="$TARGET/ai.txt"
+    HTTP_CODE=$(curl -s -o /tmp/aitxt_response -w "%{http_code}" "$URL_PATH" 2>/dev/null || echo "000")
+
+    if [ "$HTTP_CODE" = "200" ]; then
+        echo "✅ Found: $URL_PATH"
+        echo ""
+        cat /tmp/aitxt_response
+        rm -f /tmp/aitxt_response
+        exit 0
+    fi
+
+    # Try parent URLs
+    PARENT=$(echo "$TARGET" | sed 's|/[^/]*$||')
+    if [ "$PARENT" != "$TARGET" ]; then
+        exec "$0" "$PARENT"
+    fi
+
+    echo "❌ No ai.txt found in cascade"
+    rm -f /tmp/aitxt_response
+    exit 1
+else
+    # Filesystem discovery (local or mounted)
+    CURRENT="$(cd "$TARGET" 2>/dev/null && pwd || echo "$TARGET")"
+
+    echo "🔍 Discovering ai.txt in: $CURRENT"
+    echo ""
+
+    while [ "$DEPTH" -lt "$MAX_DEPTH" ]; do
+        if [ -f "$CURRENT/ai.txt" ]; then
+            echo "✅ Found: $CURRENT/ai.txt"
+            echo ""
+            cat "$CURRENT/ai.txt"
+            echo ""
+            echo "---"
+            echo "📍 Location: $CURRENT/ai.txt"
+            exit 0
+        fi
+
+        PARENT=$(dirname "$CURRENT")
+        if [ "$PARENT" = "$CURRENT" ]; then
+            echo "❌ No ai.txt found in cascade"
+            exit 1
+        fi
+
+        CURRENT="$PARENT"
+        ((DEPTH++))
+    done
+
+    echo "❌ No ai.txt found in cascade (max depth reached)"
+    exit 1
+fi
