@@ -2,97 +2,53 @@
 
 Guidance for Claude Code when working in this repository.
 
-## Project Purpose
+## Repository
 
-This repository documents **ai.txt**—a universal standard for AI-readable context about any resource (websites, projects, folders, services, etc.). The spec itself is written in ai.txt format at `/ai.txt`, demonstrating the concept through dogfooding.
-
-## Repository Structure
+This repository hosts the ai.txt specification at https://aitxt.ing.
 
 ```
 /
-├── index.html    # Human-friendly landing page
-├── ai.txt        # The specification itself (in ai.txt format)
+├── index.html    # Documentation site
+├── ai.txt        # Canonical specification
 ├── README.md     # GitHub entry point
-├── CNAME         # aitxt.ing domain
+├── CNAME         # Domain config
 ├── LICENSE       # CC0 public domain
-├── aitxt         # Discovery script for CLI/shell usage
-└── aitxt.md      # Claude Code slash command definition
+├── aitxt         # Discovery script (bash)
+└── aitxt.md      # Claude Code slash command
 ```
 
-## Key Philosophy
+## Claude Code Tooling
 
-- **Simplicity first:** All frontmatter fields are optional. Plain text prose is primary.
-- **Low barrier to entry:** Non-technical users should write ai.txt files in minutes without learning schemas.
-- **Humans first, AI second:** Files should read naturally and make sense to both people and AI agents.
-- **Extensibility without pollution:** Complex requirements (database imports, strict validation) are handled by separate profiles, not in the base spec.
+The `/aitxt` slash command discovers and displays ai.txt files.
 
-## Understanding the Spec
+### Installation (Linux/macOS)
 
-The canonical reference is `/ai.txt` at https://aitxt.ing/ai.txt. It contains:
-- Full specification with examples
-- Format and frontmatter guidance (all optional)
-- Usage examples for websites, projects, local folders
-- How AI agents should discover and use ai.txt files
+```bash
+# Install discovery script
+mkdir -p ~/.local/bin
+cp aitxt ~/.local/bin/aitxt
+chmod +x ~/.local/bin/aitxt
 
-Do not edit the spec based on assumptions. Always check `/ai.txt` for the current understanding.
+# Install Claude Code command
+mkdir -p ~/.claude/commands
+cp aitxt.md ~/.claude/commands/aitxt.md
+```
 
-## Claude Code Integration
+Ensure `~/.local/bin` is in `$PATH`. Restart Claude Code to load the command.
 
-This repository includes tooling for Claude Code's `/aitxt` slash command, enabling AI agents to discover and read ai.txt context files.
+### Usage
 
-### Components
+```
+/aitxt                      # Current directory
+/aitxt ~/Dev/myproject      # Local path
+/aitxt https://example.com  # Remote URL
+```
 
-- **`aitxt`** — Bash script that discovers ai.txt files by cascading up the directory tree (local) or URL path (remote)
-- **`aitxt.md`** — Claude Code slash command definition that invokes the script
+The script cascades up the directory/URL tree to find ai.txt, follows linked ai.txt files (depth=1), and displays a graph of discovered contexts.
 
-### Installation (Linux)
+## Editing Guidelines
 
-1. **Install the discovery script:**
-   ```bash
-   mkdir -p ~/.local/bin
-   cp aitxt ~/.local/bin/aitxt
-   chmod +x ~/.local/bin/aitxt
-   ```
-   Ensure `~/.local/bin` is in your `$PATH`.
-
-2. **Install the Claude Code slash command:**
-   ```bash
-   mkdir -p ~/.claude/commands
-   cp aitxt.md ~/.claude/commands/aitxt.md
-   ```
-
-3. **Restart Claude Code** to discover the new command.
-
-4. **Verify installation:**
-   ```bash
-   # Test the script directly
-   aitxt ~/Dev/some-project
-   aitxt https://example.com
-   ```
-
-   In Claude Code:
-   ```
-   /aitxt
-   /aitxt ~/Dev/myproject
-   /aitxt https://aitxt.ing
-   ```
-
-### How It Works
-
-The `aitxt` script:
-- Accepts a local path or HTTP URL (defaults to current directory)
-- For local paths: walks up the directory tree looking for `ai.txt`
-- For URLs: tries the path, then cascades to parent URLs
-- Outputs the found ai.txt content or an error if not found
-
-The Claude Code command:
-- Runs the script with any provided arguments
-- Summarizes the ai.txt content for the user
-- Highlights key project info, constraints, and linked contexts
-
-## When Reviewing PRs
-
-1. Check that changes align with the philosophy of simplicity and low barrier to entry
-2. Verify examples are accurate and up-to-date with the current spec in `/ai.txt`
-3. Ensure documentation doesn't add unnecessary complexity or mandatory fields
-4. Point contributors to `/ai.txt` as the canonical reference
+- The canonical spec is `/ai.txt` — keep it minimal and self-contained
+- No external ai.txt links in the spec (they get auto-followed)
+- Documentation belongs in `index.html`, not the spec
+- All frontmatter fields remain optional

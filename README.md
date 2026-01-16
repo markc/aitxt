@@ -2,74 +2,19 @@
 
 A universal standard for AI-readable context about any resource.
 
-Just as `robots.txt` tells search engines how to behave, `ai.txt` tells AI assistants what something is about.
+**Documentation:** https://aitxt.ing
 
-## Learn More
+**Specification:** https://aitxt.ing/ai.txt
 
-**For humans:** https://aitxt.ing — explains why ai.txt matters and how it works
+## Why ai.txt?
 
-**For the specification:** https://aitxt.ing/ai.txt — the complete spec written in ai.txt format
-
-**For AI developers:** Read `/ai.txt` to understand discovery, parsing, and usage guidelines
-
-## Quick Concept
-
-Place `ai.txt` at any path to describe it:
-
-```
-# Your Project
-
-Brief description of what this is.
-
-## What We Offer
-
-Features and capabilities...
-
-## What We Don't Offer
-
-Explicit limitations to prevent AI hallucination...
-```
-
-Optional metadata at the top (YAML frontmatter):
-
-```
----
-updated: 2026-01-14
-scope: /products/
-parent: https://example.com/ai.txt
----
-```
-
-Everything is optional. Write what matters.
-
-## Discovery
-
-When an AI agent encounters `/products/widgets/`, it looks for:
-1. `/products/widgets/ai.txt`
-2. `/products/ai.txt`
-3. `/ai.txt`
-
-Same logic works for filesystem paths and HTTP URLs.
-
-## Why This Matters
-
-- **Stop AI hallucination:** Put the truth in one place
-- **Control your narrative:** Tell AI assistants exactly what you are
-- **Simple and readable:** Humans and AI both understand plain text
-- **Works everywhere:** HTTP, local folders, any path structure
-
-## Claude Code Integration
-
-The `/aitxt` skill discovers and displays ai.txt files for any project or URL:
-
-```bash
-/aitxt ~/Dev/my-project          # Find ai.txt in project or parents
-/aitxt https://example.com       # Fetch ai.txt from URL hierarchy
-/aitxt                           # Use current directory
-```
-
-The skill performs cascading discovery automatically, walking the directory tree or URL hierarchy until it finds an ai.txt file, then displays its full content and location.
+- **Prevent AI hallucination** — Tell AI assistants what you actually offer (and don't offer) so they stop making things up
+- **Plain text simplicity** — Write an ai.txt file in minutes using prose and optional markdown; no schemas to learn
+- **Cascading discovery** — Place ai.txt at any path; AI agents walk up the directory tree to find context automatically
+- **Distributed context graph** — Link ai.txt files together using markdown; tools follow links ending in `ai.txt`
+- **Works everywhere** — Same format for websites, project folders, APIs, documentation, local filesystems
+- **You control the narrative** — Authoritative context comes from you, not AI training data assumptions
 
 ## License
 
-CC0 Public Domain.
+CC0 Public Domain

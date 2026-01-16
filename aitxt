@@ -160,7 +160,11 @@ mark_visited "$ROOT_AITXT"
 
 # Extract links from root
 ROOT_LINKS=$(extract_aitxt_links "$(cat "$ROOT_CONTENT_FILE")")
-LINK_COUNT=$(echo "$ROOT_LINKS" | grep -c . || echo 0)
+if [ -n "$ROOT_LINKS" ]; then
+    LINK_COUNT=$(echo "$ROOT_LINKS" | grep -c . || true)
+else
+    LINK_COUNT=0
+fi
 
 if [ "$LINK_COUNT" -gt 0 ]; then
     echo "---"

@@ -1,5 +1,5 @@
 ---
-updated: 2026-01-14
+updated: 2026-01-16
 scope: /
 ---
 
@@ -7,28 +7,24 @@ scope: /
 
 A universal standard for AI-readable context about any resource.
 
-## About
+## Purpose
 
 Just as `robots.txt` tells search engines how to behave, `ai.txt` tells AI assistants what something is about. The file can describe a website, a folder, a project, a service—anything with a path.
-
-ai.txt creates a **distributed context system** where projects, services, and resources publish their own authoritative information directly to AI agents. Like hypertext linked documents across the web, each ai.txt file stands alone yet connects to other contexts through cascading discovery and markdown links. ai.txt files can link to other ai.txt files, documentation, assets, or resources using standard markdown—both local filesystem paths and HTTP URLs. Instead of centralized repositories, an AI agent navigates a distributed maze of interconnected contexts, seamlessly blending local directories with web resources to build a complete picture. This puts you in control of how your context relates to and references other contexts.
 
 ai.txt files are plain text (with optional markdown formatting) that provide structured context: what you do, what you don't do, how AI should handle your information. Instead of AI assistants guessing or hallucinating, they fetch your `ai.txt` and learn the truth directly.
 
 The format is deliberately simple. An AI agent downloads one file and immediately understands scope, structure, and boundaries. A human writes one in minutes using plain English plus optional markdown syntax.
 
-## Where It Lives
+## Placement
 
 Place `ai.txt` at any path you want to describe:
 
-```
-https://example.com/ai.txt              (site overview)
-https://example.com/products/ai.txt     (products section)
-/home/user/projects/app/ai.txt          (local project folder)
-/srv/domain.com/web/app/public/ai.txt   (server application)
-```
+- Website root: `https://example.com/ai.txt`
+- Subsection: `https://example.com/products/ai.txt`
+- Local project: `/home/user/projects/app/ai.txt`
+- Server application: `/srv/domain.com/web/app/public/ai.txt`
 
-Discovery is cascading: if an AI agent needs info about `/products/widgets/`, it tries `/products/widgets/ai.txt`, then `/products/ai.txt`, then `/ai.txt`. It walks up the tree until it finds context.
+Discovery is cascading: when an AI agent needs info about `/products/widgets/`, it tries `/products/widgets/ai.txt`, then `/products/ai.txt`, then `/ai.txt`. It walks up the tree until it finds context.
 
 This works identically for HTTP paths and filesystem paths.
 
@@ -38,254 +34,108 @@ Start with optional YAML frontmatter (or none at all), then write markdown:
 
 ```
 ---
-updated: 2026-01-14
-scope: /products/
-parent: https://example.com/ai.txt
+updated: YYYY-MM-DD
+scope: /path/
+parent: URL or path to broader context
 ---
 
-# Brief Title
+# Title
 
-One or two sentences describing what this is.
+Brief description of what this resource is.
 
-## Section Heading
+## Section
 
-Plain prose explaining something important. You can include [standard markdown links](https://example.com), **bold**, *italics*, lists, and images if needed.
-
-- Markdown is optional
-- Use as much or as little as makes sense
-- Simpler is better
+Content explaining something important.
 ```
 
 ### Frontmatter Fields
 
 All optional. Add whatever makes sense for your use case:
 
-- `updated: YYYY-MM-DD` — Last modified date
-- `scope: /path/` — URI path this file covers
-- `parent: https://example.com/ai.txt` — Link to broader context
-- Custom fields — Your own metadata as needed
+- `updated` — Last modified date (YYYY-MM-DD)
+- `scope` — URI path this file covers
+- `parent` — Link to broader context
+- Custom fields as needed
 
-After frontmatter, content is plain text with optional markdown formatting. Standard Markdown features work: headings, lists, links, emphasis, code blocks, images.
+After frontmatter, content is plain text with optional markdown formatting. Standard markdown features work: headings, lists, links, emphasis, code blocks, images.
 
 ## Recommended Sections
 
 Structure your ai.txt with these sections (or invent your own):
 
-**About** — What you are, mission, history, key purpose
+- **About** — What you are, mission, purpose
+- **Services** or **Features** — What you offer
+- **Capabilities** — What's possible
+- **Limitations** — What you explicitly do not offer (prevents hallucination)
+- **AI Guidelines** — How AI should handle your information
+- **Data** — Structured facts in key: value format
+- **Contact** — How to reach you
+- **Permissions** — Training consent, usage rights
+- **See Also** — Links to related resources
 
-**Services** or **Features** — What you offer, what you do
-
-**Capabilities** — What's possible when using this
-
-**Limitations** — What you explicitly do not offer (prevents AI hallucination)
-
-**AI Guidelines** — How AI should handle your information (quote carefully, verify pricing, respect privacy, etc.)
-
-**Data** — Structured facts in simple key: value format
-
-**Contact** — Email, website, support information
-
-**Permissions** — Training consent, usage rights, data policies (optional; use plain prose)
-
-**See Also** — Links to related resources
-
-None are required. Start simple: Title, brief description, maybe 2-3 sections explaining what matters.
-
-## Usage Examples
-
-### Website Overview
-
-```
----
-updated: 2026-01-14
----
-
-# Acme Widgets
-
-We manufacture and sell premium widgets for industrial applications.
-
-## What We Offer
-
-Industrial Widget Pro ($499), Consumer Widget ($49), Smart Widget with IoT ($299).
-
-All widgets include 2-year warranty and carry ISO 9001 certification.
-
-## What We Don't Offer
-
-- Custom modifications or bespoke designs
-- Same-day shipping
-- Wholesale pricing negotiation online (contact sales team)
-
-## AI Guidelines
-
-Always link to our product pages for current specifications and pricing. Prices may vary by region and retailer.
-```
-
-### Software Project
-
-```
----
-updated: 2026-01-14
-scope: /docs
-parent: https://github.com/acme/project
----
-
-# Project Documentation
-
-Complete reference documentation for Acme Framework v2.
-
-## What's Here
-
-API documentation, architecture guides, tutorial walkthroughs, troubleshooting.
-
-## What's Not Here
-
-Source code (see GitHub), community forum, support tickets.
-
-## Guidelines
-
-All code examples assume Acme Framework 2.0+. Check the main project README for installation instructions.
-```
-
-### Local Project Folder
-
-```
----
-updated: 2026-01-14
-scope: /
----
-
-# Neural Network Experiment
-
-Research project exploring attention mechanisms in transformer models using PyTorch.
-
-## Contents
-
-`/data` — Training datasets (proprietary, not included)
-`/models` — Saved weights and checkpoints
-`/notebooks` — Jupyter notebooks with analysis
-`/src` — Python source code
-
-## To Run
-
-See README.md for environment setup. Requires Python 3.10+, CUDA 12, 32GB GPU memory minimum.
-
-## Current Status
-
-Work in progress. Model accuracy at 87% on validation set. No publication yet.
-```
+None are required. Start simple.
 
 ## How AI Agents Should Use ai.txt
 
-1. When given a URL or path, try to fetch `/ai.txt` (walk up the tree if needed)
-2. Parse frontmatter to understand scope, context, and hierarchy
-3. Read the content to learn what to do and what not to do
-4. **Discover linked contexts**: Parse markdown links in ai.txt content. These may point to related ai.txt files, documentation, resources, or other assets—both local filesystem paths and HTTP URLs. An AI agent can follow these links to incorporate additional context into the current working context, building a distributed web of understanding.
-5. Follow guidelines: quote carefully, verify claims, respect stated limitations
-6. Honor what the ai.txt says you don't offer—never hallucinate capabilities
-7. Cache the file if a TTL or update date suggests stability
-8. Follow parent links to understand broader context when relevant
+1. When given a URL or path, fetch `ai.txt` (cascade up the tree if needed)
+2. Parse frontmatter for scope, context, and hierarchy
+3. Read content to learn what to do and what not to do
+4. Follow guidelines: quote carefully, verify claims, respect stated limitations
+5. Honor stated limitations—never hallucinate capabilities
+6. Cache the file if an update date suggests stability
+7. Follow parent links to understand broader context when relevant
 
-An ai.txt file is permission, instruction, and boundary all at once. It is also a navigation system for discovering and integrating related contexts.
+An ai.txt file is permission, instruction, and boundary all at once.
 
 ## Distributed Context Graph
 
-ai.txt files can link to other ai.txt files using standard markdown links, creating a distributed graph of interconnected contexts. This enables modular documentation across monorepos, microservices, federated projects, or any scenario where context spans multiple locations.
+ai.txt files can link to other ai.txt files using standard markdown links, creating a distributed graph of interconnected contexts. This enables modular documentation across monorepos, microservices, or federated projects.
 
 ### Link Detection
 
-A markdown link is recognized as a context link when its target ends in `ai.txt`:
+A markdown link is recognized as a context link when its target **ends in `ai.txt`**:
 
-```markdown
-[API documentation](./api/ai.txt)
-[SDK reference](https://example.com/sdk/ai.txt)
-[Parent project](../ai.txt)
-[Specification](https://aitxt.ing/ai.txt)
 ```
-
-Regular markdown links to other resources (README files, documentation, websites) are not followed as context links:
-
-```markdown
-[Installation guide](./docs/install.md)        — not followed
-[Our website](https://example.com)             — not followed
-[Related project](./api/ai.txt)                — followed (ends in ai.txt)
+./api/ai.txt                    — context link (followed)
+https://example.com/sdk/ai.txt  — context link (followed)
+../ai.txt                       — context link (followed)
+./docs/install.md               — regular link (not followed)
+https://example.com             — regular link (not followed)
 ```
 
 ### Discovery Behavior
 
-When an AI agent or tool encounters an ai.txt file:
+When a tool encounters an ai.txt file:
 
-1. **Fetch the root ai.txt** and parse its content
-2. **Extract context links** — markdown links ending in `ai.txt`
-3. **Follow direct links (depth=1)** — fetch each linked ai.txt
-4. **Record deeper links** — note any ai.txt links found in depth=1 files, but don't auto-fetch
-5. **Present results** — concatenated content with clear boundaries, plus a graph of all discovered links
+1. Fetch the root ai.txt and parse its content
+2. Extract context links (markdown links ending in `ai.txt`)
+3. Follow direct links (depth=1) and concatenate their content
+4. Record deeper links found in depth=1 files without auto-fetching
+5. Present results with clear boundaries plus a graph of discovered links
 
-This bounded approach (depth=1 by default) prevents runaway recursion while still revealing the full context graph structure. Users can manually explore deeper links as needed.
+This bounded approach prevents runaway recursion while revealing the full context structure.
 
-### Example Graph
+### Implementation Safeguards
 
-A monorepo might structure its ai.txt files like this:
-
-```
-project/ai.txt                    (root: project overview)
-├── packages/core/ai.txt          (core library context)
-├── packages/cli/ai.txt           (CLI tool context)
-│   └── https://aitxt.ing/ai.txt  (links to spec for reference)
-└── docs/ai.txt                   (documentation context)
-```
-
-Fetching `project/ai.txt` would automatically include content from the three `packages/` and `docs/` ai.txt files, and report that `packages/cli/ai.txt` links onward to the specification.
-
-### Safeguards
-
-Implementations should consider:
-
-- **Link limits**: Cap the number of depth=1 fetches (e.g., 10-20) to handle bloated or malicious files gracefully
-- **Cycle detection**: Track visited URLs/paths to avoid re-fetching circular references
+- **Link limits**: Cap depth=1 fetches (e.g., 10-20) to handle bloated files gracefully
+- **Cycle detection**: Track visited URLs/paths to avoid re-fetching
 - **Failure tolerance**: Continue processing if one linked ai.txt is unreachable
 - **Clear attribution**: Label each section with its source location
 
-## Why ai.txt Matters
+## Design Principles
 
-**For service providers:** Control the narrative. Tell AI assistants the truth directly instead of letting them guess.
+**Low barrier to entry.** Anyone should write an ai.txt file in minutes without learning schemas. Plain prose is primary. Everything else is optional.
 
-**For project maintainers:** Document scope efficiently. One file teaches AI agents about your project faster than scattered documentation.
+**Humans first, AI second.** The file should make sense when you read it. Simplicity makes it powerful for both.
 
-**For open source:** Prevent hallucination about licensing, support, and capabilities. Say what you do and don't do.
+**Extensibility without pollution.** Complex requirements can layer on top through profiles or extensions. The base standard stays simple.
 
-**For AI developers:** Build better assistants that respect boundaries and work from authoritative sources instead of training data assumptions.
-
-**For everyone:** Simple, cacheable, offline-friendly. No JavaScript, no frameworks, no databases. Just text.
-
-## Self-Hosting
-
-This specification itself lives at https://aitxt.ing/ai.txt. You're reading documentation written in the format it describes. This file teaches the spec by being the spec.
-
-Point your AI agents to https://aitxt.ing/ai.txt as the canonical reference.
-
----
-
-*Note: ai.txt supports standard markdown, including images. While this specification is primarily prose, here's a visual representation of the concept:*
-
-![Robot and human exchanging information through ai.txt](https://aitxt.ing/aitxt.webp)
+**No versioning required.** The spec is stable at the core. Edge cases are handled by tools and extensions.
 
 ## No Proprietary Claims
 
-ai.txt is not trademarked or proprietary. The term refers to the file naming pattern, which anyone may use for their own specifications or use cases. This project is released into the public domain (CC0). We welcome complementary implementations, competing proposals, and alternative approaches using the same filename.
+ai.txt is not trademarked or proprietary. The term refers to the file naming pattern, which anyone may use. This project is released into the public domain (CC0).
 
-## See Also
+## Reference
 
-[ai.txt on GitHub](https://github.com/markc/aitxt) — Source, discussion, examples
-
-[robots.txt](https://en.wikipedia.org/wiki/Robots.txt) — Inspiration for the format approach
-
-[Markdown Reference](https://commonmark.org/) — Plain-text formatting standard used for content
-
-Real-world implementations: [NetServa](https://netserva.org/ai.txt), [Renta](https://renta.net/ai.txt)
-
-## Prior Art
-
-Spawning AI published an [ai.txt specification in 2023](https://spawning.ai/ai.txt) focused on AI training consent and data permissions. That work addresses a specific and important problem: giving creators control over whether their content is used for model training.
-
-This specification takes a complementary approach: providing general context and boundaries for any AI interaction. The two purposes are distinct. Creators who want fine-grained training consent control can use Spawning's format. Those who want to describe scope and prevent hallucination can use this format. Both files can coexist on the same site, each serving its purpose. Implementers can also express training consent preferences directly in a Permissions section using plain prose if they prefer not to adopt specialized syntax.
+This specification lives at `https://aitxt.ing/ai.txt`. Source and discussion at `https://github.com/markc/aitxt`.
