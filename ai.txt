@@ -87,7 +87,7 @@ None are required. Start simple.
 
 An ai.txt file is permission, instruction, and boundary all at once.
 
-## Distributed Context Graph
+## Distributed Context
 
 ai.txt files can link to other ai.txt files using standard markdown links, creating a distributed graph of interconnected contexts. This enables modular documentation across monorepos, microservices, or federated projects.
 
