@@ -188,6 +188,64 @@ Work in progress. Model accuracy at 87% on validation set. No publication yet.
 
 An ai.txt file is permission, instruction, and boundary all at once. It is also a navigation system for discovering and integrating related contexts.
 
+## Distributed Context Graph
+
+ai.txt files can link to other ai.txt files using standard markdown links, creating a distributed graph of interconnected contexts. This enables modular documentation across monorepos, microservices, federated projects, or any scenario where context spans multiple locations.
+
+### Link Detection
+
+A markdown link is recognized as a context link when its target ends in `ai.txt`:
+
+```markdown
+[API documentation](./api/ai.txt)
+[SDK reference](https://example.com/sdk/ai.txt)
+[Parent project](../ai.txt)
+[Specification](https://aitxt.ing/ai.txt)
+```
+
+Regular markdown links to other resources (README files, documentation, websites) are not followed as context links:
+
+```markdown
+[Installation guide](./docs/install.md)        — not followed
+[Our website](https://example.com)             — not followed
+[Related project](./api/ai.txt)                — followed (ends in ai.txt)
+```
+
+### Discovery Behavior
+
+When an AI agent or tool encounters an ai.txt file:
+
+1. **Fetch the root ai.txt** and parse its content
+2. **Extract context links** — markdown links ending in `ai.txt`
+3. **Follow direct links (depth=1)** — fetch each linked ai.txt
+4. **Record deeper links** — note any ai.txt links found in depth=1 files, but don't auto-fetch
+5. **Present results** — concatenated content with clear boundaries, plus a graph of all discovered links
+
+This bounded approach (depth=1 by default) prevents runaway recursion while still revealing the full context graph structure. Users can manually explore deeper links as needed.
+
+### Example Graph
+
+A monorepo might structure its ai.txt files like this:
+
+```
+project/ai.txt                    (root: project overview)
+├── packages/core/ai.txt          (core library context)
+├── packages/cli/ai.txt           (CLI tool context)
+│   └── https://aitxt.ing/ai.txt  (links to spec for reference)
+└── docs/ai.txt                   (documentation context)
+```
+
+Fetching `project/ai.txt` would automatically include content from the three `packages/` and `docs/` ai.txt files, and report that `packages/cli/ai.txt` links onward to the specification.
+
+### Safeguards
+
+Implementations should consider:
+
+- **Link limits**: Cap the number of depth=1 fetches (e.g., 10-20) to handle bloated or malicious files gracefully
+- **Cycle detection**: Track visited URLs/paths to avoid re-fetching circular references
+- **Failure tolerance**: Continue processing if one linked ai.txt is unreachable
+- **Clear attribution**: Label each section with its source location
+
 ## Why ai.txt Matters
 
 **For service providers:** Control the narrative. Tell AI assistants the truth directly instead of letting them guess.
@@ -210,7 +268,7 @@ Point your AI agents to https://aitxt.ing/ai.txt as the canonical reference.
 
 *Note: ai.txt supports standard markdown, including images. While this specification is primarily prose, here's a visual representation of the concept:*
 
-![Robot and human exchanging information through ai.txt](https://aitxt.ing/aitxt-to-you.webp)
+![Robot and human exchanging information through ai.txt](https://aitxt.ing/aitxt.webp)
 
 ## No Proprietary Claims
 
