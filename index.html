@@ -445,11 +445,18 @@
             <div class="dropdown" id="sections-dropdown">
                 <button class="dropdown-toggle" id="sections-toggle">Sections</button>
                 <div class="dropdown-menu">
+                    <a href="#what-is-it">What Is It?</a>
                     <a href="#why-it-matters">Why It Matters</a>
-                    <a href="#how-it-works">How It Works</a>
                     <a href="#design-principles">Design Principles</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#distributed-context-graph">Distributed Context</a>
+                    <a href="#format">Format</a>
                     <a href="#getting-started">Getting Started</a>
                     <a href="#ai-developers">For AI Developers</a>
+                    <a href="#adoption">Adoption</a>
+                    <a href="#durability">Durability</a>
+                    <a href="#implementation">Implementation</a>
+                    <a href="#prior-art">Prior Art</a>
                 </div>
             </div>
             <a href="https://github.com/markc/aitxt">GitHub</a>
@@ -464,7 +471,7 @@
         <img src="/aitxt.webp" alt="AI and human exchanging information through ai.txt" class="hero-image">
     </div>
 
-    <h2>What Is It?</h2>
+    <h2 id="what-is-it">What Is It?</h2>
     <p>✨ <strong style="color: var(--primary);">ai.txt</strong> is a universal standard for describing any resource in plain text, enabling AI agents to discover context, learn facts directly, and stop hallucinating. The format is simple with optional metadata, works everywhere through cascading directory discovery, and puts you in control of your narrative instead of letting AI systems guess.</p>
 
     <p>Just as <code>robots.txt</code> instructs search engines how to crawl, the specification tells AI assistants what something actually is about. You can place an ai.txt file at any path—whether it's a website root, a project folder, a service documentation directory, or any resource—and AI agents will discover it, understand your complete context, and work from authoritative facts instead of hallucination or assumptions.</p>
@@ -523,7 +530,7 @@
 
     <p>The same logic works for HTTP paths or local filesystem paths. Walk up the tree, find the context, use it.</p>
 
-    <h2>Distributed Context Graph</h2>
+    <h2 id="distributed-context-graph">Distributed Context Graph</h2>
 
     <p>ai.txt files can link to other ai.txt files using standard markdown, creating a distributed graph of interconnected contexts. A markdown link is recognized as a context link when its target <strong>ends in <code>ai.txt</code></strong>:</p>
 
@@ -543,7 +550,7 @@
 
     <p>This bounded approach prevents runaway recursion while revealing the full context structure. Users can manually explore deeper links as needed.</p>
 
-    <h2>Format</h2>
+    <h2 id="format">Format</h2>
 
     <p>Start with optional YAML metadata (or skip it entirely), then plain text with optional markdown formatting:</p>
 
@@ -592,19 +599,19 @@ More details here.</code></pre>
 
     <p>The canonical reference is the <a href="/ai.txt">full specification</a>. Point your agents there to understand the spec.</p>
 
-    <h2>On Adoption and Implementation</h2>
+    <h2 id="adoption">On Adoption and Implementation</h2>
 
     <p>The ai.txt specification succeeds through intentional implementation rather than passive discovery. Rather than waiting for AI systems to spontaneously respect ai.txt files, the spec functions as an instruction manual that developers actively consult. By referencing <a href="/ai.txt">the canonical specification</a>, developers learn the pattern and incorporate it into their workflows—whether creating ai.txt files for new projects, discovering existing ones, or building tools that understand and respect the format. This active adoption strategy is more realistic and sustainable than relying on automatic crawling or universal compliance.</p>
 
-    <h2>On Durability and Versioning</h2>
+    <h2 id="durability">On Durability and Versioning</h2>
 
     <p>The specification's strength lies in its intentional simplicity. Because the core concept—optional YAML frontmatter followed by plain prose—places no restrictions, there is no meaningful room for version evolution at the spec level itself. This durability is by design. Organizations that require stricter validation or structured profiles can build those as internal extensions without modifying the canonical spec. The simpler the standard, the longer it remains relevant.</p>
 
-    <h2>On Implementation Patterns</h2>
+    <h2 id="implementation">On Implementation Patterns</h2>
 
     <p>Tools like Claude Code can embed ai.txt awareness into workflows—discovering local files, suggesting their creation when missing, and fetching related ai.txt files from linked projects to provide richer context. The spec becomes self-propagating through intentional tool support rather than external mandates.</p>
 
-    <h2>Prior Art</h2>
+    <h2 id="prior-art">Prior Art</h2>
 
     <p><a href="https://spawning.ai/ai.txt">Spawning AI's ai.txt specification (2023)</a> addresses a complementary problem: AI training consent and data permissions. This spec focuses on general context and preventing hallucination. Both approaches can coexist—use them for their specific purposes, or combine them on the same site.</p>
 
