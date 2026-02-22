@@ -127,7 +127,7 @@ This bounded approach prevents runaway recursion while revealing the full contex
 Websites can advertise their ai.txt file to browsers and AI agents using a standard `<link>` tag with `rel="prefetch"`:
 
 ```html
-<link rel="prefetch" href="/ai.txt" as="fetch" type="text/plain">
+<link rel="prefetch" href="/ai.txt">
 ```
 
 This uses the existing [Resource Hints](https://www.w3.org/TR/resource-hints/) specification—no custom `rel` values needed. Browsers fetch the file at low priority during idle time and cache it, similar to how they fetch `favicon.ico`. The file is then immediately available to:
@@ -140,10 +140,10 @@ For subpages, use a relative path back to the root:
 
 ```html
 <!-- Root page -->
-<link rel="prefetch" href="ai.txt" as="fetch" type="text/plain">
+<link rel="prefetch" href="ai.txt">
 
 <!-- Subpage (e.g., /products/index.html) -->
-<link rel="prefetch" href="../ai.txt" as="fetch" type="text/plain">
+<link rel="prefetch" href="../ai.txt">
 ```
 
 This is optional but recommended. It costs almost nothing (ai.txt files are typically under 10KB) and makes discovery explicit rather than speculative.

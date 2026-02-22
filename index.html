@@ -33,7 +33,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- ai.txt discovery -->
-    <link rel="prefetch" href="/ai.txt" as="fetch" type="text/plain">
+    <link rel="prefetch" href="/ai.txt">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -582,17 +582,17 @@ More details here.</code></pre>
 
     <p>Websites can advertise their ai.txt file using a standard <code>&lt;link&gt;</code> tag with <code>rel="prefetch"</code>. This uses the existing <a href="https://www.w3.org/TR/resource-hints/">Resource Hints</a> specification—no custom <code>rel</code> values needed:</p>
 
-    <pre><code>&lt;link rel="prefetch" href="/ai.txt" as="fetch" type="text/plain"&gt;</code></pre>
+    <pre><code>&lt;link rel="prefetch" href="/ai.txt"&gt;</code></pre>
 
     <p>Browsers fetch the file at low priority during idle time and cache it, similar to how they fetch <code>favicon.ico</code>. The cached file is then immediately available to AI features built into browsers, browser extensions, and any tool that parses <code>&lt;link&gt;</code> tags.</p>
 
     <p>For subpages, use a relative path back to the root:</p>
 
     <pre><code>&lt;!-- Root page --&gt;
-&lt;link rel="prefetch" href="ai.txt" as="fetch" type="text/plain"&gt;
+&lt;link rel="prefetch" href="ai.txt"&gt;
 
 &lt;!-- Subpage (e.g., /products/index.html) --&gt;
-&lt;link rel="prefetch" href="../ai.txt" as="fetch" type="text/plain"&gt;</code></pre>
+&lt;link rel="prefetch" href="../ai.txt"&gt;</code></pre>
 
     <p>This is optional but recommended. It costs almost nothing—ai.txt files are typically under 10KB—and makes discovery explicit rather than speculative.</p>
 
