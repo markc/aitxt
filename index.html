@@ -32,6 +32,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- ai.txt discovery -->
+    <link rel="prefetch" href="/ai.txt" as="fetch" type="text/plain">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -453,6 +456,7 @@
                     <a href="#format">Format</a>
                     <a href="#getting-started">Getting Started</a>
                     <a href="#ai-developers">For AI Developers</a>
+                    <a href="#html-discovery">HTML Discovery</a>
                     <a href="#adoption">Adoption</a>
                     <a href="#durability">Durability</a>
                     <a href="#implementation">Implementation</a>
@@ -573,6 +577,24 @@ Prose explaining something important. Use [markdown links](https://example.com),
 More details here.</code></pre>
 
     <p>That's it. Write what matters. Omit what doesn't. The spec is a suggestion, not a rule.</p>
+
+    <h2 id="html-discovery">HTML Discovery</h2>
+
+    <p>Websites can advertise their ai.txt file using a standard <code>&lt;link&gt;</code> tag with <code>rel="prefetch"</code>. This uses the existing <a href="https://www.w3.org/TR/resource-hints/">Resource Hints</a> specification—no custom <code>rel</code> values needed:</p>
+
+    <pre><code>&lt;link rel="prefetch" href="/ai.txt" as="fetch" type="text/plain"&gt;</code></pre>
+
+    <p>Browsers fetch the file at low priority during idle time and cache it, similar to how they fetch <code>favicon.ico</code>. The cached file is then immediately available to AI features built into browsers, browser extensions, and any tool that parses <code>&lt;link&gt;</code> tags.</p>
+
+    <p>For subpages, use a relative path back to the root:</p>
+
+    <pre><code>&lt;!-- Root page --&gt;
+&lt;link rel="prefetch" href="ai.txt" as="fetch" type="text/plain"&gt;
+
+&lt;!-- Subpage (e.g., /products/index.html) --&gt;
+&lt;link rel="prefetch" href="../ai.txt" as="fetch" type="text/plain"&gt;</code></pre>
+
+    <p>This is optional but recommended. It costs almost nothing—ai.txt files are typically under 10KB—and makes discovery explicit rather than speculative.</p>
 
     <h2 id="getting-started">Getting Started</h2>
 

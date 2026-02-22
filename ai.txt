@@ -1,5 +1,5 @@
 ---
-updated: 2026-01-16
+updated: 2026-02-22
 scope: /
 ---
 
@@ -121,6 +121,32 @@ This bounded approach prevents runaway recursion while revealing the full contex
 - **Cycle detection**: Track visited URLs/paths to avoid re-fetching
 - **Failure tolerance**: Continue processing if one linked ai.txt is unreachable
 - **Clear attribution**: Label each section with its source location
+
+## HTML Discovery
+
+Websites can advertise their ai.txt file to browsers and AI agents using a standard `<link>` tag with `rel="prefetch"`:
+
+```html
+<link rel="prefetch" href="/ai.txt" as="fetch" type="text/plain">
+```
+
+This uses the existing [Resource Hints](https://www.w3.org/TR/resource-hints/) specification—no custom `rel` values needed. Browsers fetch the file at low priority during idle time and cache it, similar to how they fetch `favicon.ico`. The file is then immediately available to:
+
+- AI features built into browsers (summarisation, assistants)
+- Browser extensions that consume ai.txt
+- Any tool that checks the browser cache or parses `<link>` tags
+
+For subpages, use a relative path back to the root:
+
+```html
+<!-- Root page -->
+<link rel="prefetch" href="ai.txt" as="fetch" type="text/plain">
+
+<!-- Subpage (e.g., /products/index.html) -->
+<link rel="prefetch" href="../ai.txt" as="fetch" type="text/plain">
+```
+
+This is optional but recommended. It costs almost nothing (ai.txt files are typically under 10KB) and makes discovery explicit rather than speculative.
 
 ## Design Principles
 
